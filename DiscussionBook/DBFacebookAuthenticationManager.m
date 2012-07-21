@@ -46,7 +46,7 @@ static NSString *FBNSUserDefaultsExpirationDateKey = @"FBNSUserDefaultsExpiratio
 }
 
 - (NSString *)accessToken {
-    return [_facebookObject accessToken];
+    return [[_facebookObject accessToken] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (NSDate *)expirationDate {

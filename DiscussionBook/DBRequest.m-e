@@ -9,6 +9,7 @@
 #import "DBRequest.h"
 #import "DBAppDelegate.h"
 #import "FBObject.h"
+#import "DBFacebookAuthenticationManager.h"
 
 UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
     static NSOperationQueue *queue = nil;
@@ -105,10 +106,15 @@ static NSString * DBRequestMethods[] = {
     
     NSURL *url = [NSURL URLWithString:[self route] relativeToURL:[NSURL URLWithString:@"https://graph.facebook.com"]];
     
+    DBFacebookAuthenticationManager *manager = [DBFacebookAuthenticationManager sharedManager];
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    [params addEntriesFromDictionary:[self parameters]];
+    [params setObject:[manager accessToken] forKey:@"access_token"];
+    
     _request = [FBRequest new];
     _request.httpMethod = DBRequestMethods[[self method]];
     _request.url        = [url absoluteString];
-    _request.params     = [[self parameters] mutableCopy];
+    _request.params     = params;
     _request.delegate   = self;
     
     [_request connect];
