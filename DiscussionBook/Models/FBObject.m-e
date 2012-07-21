@@ -22,29 +22,16 @@ UIKIT_STATIC_INLINE NSDictionary *DBPropertiesForClass(Class cls) {
         objc_property_t prop = properties[i];
 
         NSString *name = [[NSString alloc] initWithCString:property_getName(prop) encoding:NSUTF8StringEncoding];
-        NSString *attributes = [NSString stringWithCString:property_getAttributes(prop)
-                                                  encoding:NSUTF8StringEncoding];
-        if(attributes) {
+        char *typeStr = property_copyAttributeValue(prop, "T");
+        if(typeStr[0] == '@' && strlen(typeStr) > 3) {
             //Only add object properties
-            BOOL shouldAddProperty = [[attributes substringToIndex:2] isEqualToString:@"T@"];
-            
-            //Don't add readonly properties
-            NSRange rangeOfFirstComma = [attributes rangeOfString:@","];
-            if(shouldAddProperty && rangeOfFirstComma.location != NSNotFound) {
-                NSRange rangeOfFirstComma = [attributes rangeOfString:@","];
-                NSRange rng = NSMakeRange(rangeOfFirstComma.location, rangeOfFirstComma.location + 2);
-                shouldAddProperty = ![[attributes substringWithRange:rng] isEqualToString:@"R"];
-            }
-            
-            if(shouldAddProperty) {
-                NSString *className = [attributes substringWithRange:NSMakeRange(2, [attributes length] - 3)];
-                Class cls = NSClassFromString(className);
-                
-                if(cls) {
-                    [props setObject:cls forKey:name];
-                }
+            NSString *className = [[NSString alloc] initWithBytes:typeStr+2 length:strlen(typeStr)-3 encoding:NSASCIIStringEncoding];
+            Class cls = NSClassFromString(className);
+            if (cls) {
+                [props setObject:cls forKey:name];
             }
         }
+        free(typeStr);
     }
 
     return [props copy];
