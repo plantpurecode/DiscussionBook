@@ -10,6 +10,15 @@
 #import "DBAppDelegate.h"
 #import "FBObject.h"
 
+UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
+    static NSOperationQueue *queue = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = [[NSOperationQueue alloc] init];
+    });
+    return queue;
+}
+
 @interface DBRequest() <FBRequestDelegate>
 
 @property (nonatomic, readonly) DBAppDelegate *appDelegate;
@@ -52,6 +61,10 @@
     _request.delegate   = self;
     
     [_request connect];    
+}
+
+- (void)execute {
+    [DBRequestOperationQueue() addOperation:self];
 }
 
 #pragma mark - FBRequestDelegate

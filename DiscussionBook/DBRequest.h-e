@@ -19,4 +19,6 @@
 @property (nonatomic, copy) dispatch_block_t successBlock;
 @property (nonatomic, copy) void(^failureBlock)(NSError *error);
 
+- (void)execute;
+
 @end
