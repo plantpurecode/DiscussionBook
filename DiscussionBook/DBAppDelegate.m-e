@@ -30,11 +30,11 @@
     self.window.rootViewController = self.rootViewController;
     [self.window makeKeyAndVisible];
     
-    int64_t delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self performMagic];
-    });
+//    int64_t delayInSeconds = 2.0;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        [self performMagic];
+//    });
     
     return YES;
 }
@@ -136,6 +136,10 @@
     [self saveContext];
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+     return [_facebookObject handleOpenURL:url];
+}
+
 - (void)saveContext
 {
     NSError *error = nil;
@@ -166,7 +170,8 @@
     
     return _rootViewController;
 }
-    
+
+
 #pragma mark - Core Data stack
 
 // Returns the managed object context for the application.
