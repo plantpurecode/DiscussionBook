@@ -20,11 +20,25 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         [self setTitle:@"DiscussionBook"];
+        resultsController = [[DBFetchedResultsController alloc] init];
+        [resultsController setCellReuseIdentifier:[DBGroupTableViewCell reuseIdentifier]];
         
-        DBRequest *request = [[DBRequest alloc] init];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
+        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+        [resultsController setFetchRequest:fetchRequest];
+        
+        // start loading the groups
+        DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
         [request setRoute:@"me/groups"];
+        [request setResponseObjectsKeyPath:@"data"];
+        [request execute];
     }
     return self;
+}
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    _managedObjectContext = managedObjectContext;
+    [resultsController setFetchContext:_managedObjectContext];
 }
 
 - (void)viewDidLoad {
@@ -32,15 +46,7 @@
     UINib *nib = [UINib nibWithNibName:@"DBGroupTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:[DBGroupTableViewCell reuseIdentifier]];
     
-    resultsController = [[DBFetchedResultsController alloc] init];
     [resultsController setTableView:[self tableView]];
-    [resultsController setCellReuseIdentifier:[DBGroupTableViewCell reuseIdentifier]];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"FBGroup" inManagedObjectContext:[self managedObjectContext]]];
-    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
-    [resultsController setFetchRequest:fetchRequest];
-    [resultsController setFetchContext:[self managedObjectContext]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

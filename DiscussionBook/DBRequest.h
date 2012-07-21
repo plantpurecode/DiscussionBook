@@ -19,7 +19,8 @@ typedef enum {
 
 @interface DBRequest : NSOperation
 
-@property (nonatomic, strong) Class responseObjectType;
+- (id)initWithResponseObjectType:(Class)responseObjectType;
+@property (nonatomic, readonly) Class responseObjectType;
 
 @property (nonatomic, copy) NSString *route;
 @property (nonatomic) DBRequestMethod method;
