@@ -33,19 +33,15 @@
     self.window.rootViewController = self.rootViewController;
     [self.window makeKeyAndVisible];
     
-    [self attemptToLogIn];
-    
-//    int64_t delayInSeconds = 2.0;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        [self performMagic];
-//    });
+    // delay this slightly
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self attemptToLogIn];
+    });
     
     return YES;
 }
 
 - (void)attemptToLogIn {
-    
     [[DBFacebookAuthenticationManager sharedManager] authenticateWithBlock:^(BOOL success) {
         if (success) {
             [_groupListController requestUserGroups];
