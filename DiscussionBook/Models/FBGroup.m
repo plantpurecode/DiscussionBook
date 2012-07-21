@@ -15,4 +15,8 @@
 @dynamic name;
 @dynamic posts;
 
++ (NSDictionary *)propertyMapping {
+    return @{ @"name" : @"name" };
+}
+
 @end

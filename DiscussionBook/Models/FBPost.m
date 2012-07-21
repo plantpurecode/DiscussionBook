@@ -8,11 +8,18 @@
 
 #import "FBPost.h"
 
-
 @implementation FBPost
 
 @dynamic createdDate;
 @dynamic message;
 @dynamic fromUser;
+
++ (NSDictionary *)propertyMapping {
+    return @{
+        @"updated_time": @"created_time",
+        @"message" : @"message",
+        @"from" : @"fromUser"
+    };
+}
 
 @end

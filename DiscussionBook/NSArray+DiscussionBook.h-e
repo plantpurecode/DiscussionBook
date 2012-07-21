@@ -1,5 +1,5 @@
 //
-//  FBUser.h
+//  NSArray+DiscussionBook.h
 //  DiscussionBook
 //
 //  Created by Jacob Relkin on 7/21/12.
@@ -7,12 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import "FBObject.h"
 
+@interface NSArray (DiscussionBook)
 
-@interface FBUser : FBObject
-
-@property (nonatomic, retain) NSString * name;
+- (NSArray *)arrayByMappingArrayWithBlock:(id(^)(id obj))block;
 
 @end

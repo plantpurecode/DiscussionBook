@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "FBObject.h"
-
+#import "FBUser.h"
 
 @interface FBPost : FBObject
 
 @property (nonatomic, retain) NSDate * createdDate;
 @property (nonatomic, retain) NSString * message;
-@property (nonatomic, retain) NSManagedObject *fromUser;
+@property (nonatomic, retain) FBUser *fromUser;
 
 @end

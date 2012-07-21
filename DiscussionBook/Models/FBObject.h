@@ -14,4 +14,9 @@
 
 @property (nonatomic, retain) NSString * identifier;
 
++ (NSDictionary *)properties;
++ (NSDictionary *)propertyMapping;
+
+- (id)initWithDictionary:(NSDictionary *)dictionary inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
