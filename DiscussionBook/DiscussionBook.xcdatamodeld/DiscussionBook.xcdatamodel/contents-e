@@ -10,12 +10,12 @@
     <entity name="FBPost" representedClassName="FBPost" parentEntity="FBObject" syncable="YES">
         <attribute name="createdDate" attributeType="Date" syncable="YES"/>
         <attribute name="message" attributeType="String" syncable="YES"/>
-        <relationship name="fromUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" inverseName="relationship" inverseEntity="FBUser" syncable="YES"/>
+        <relationship name="fromUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" inverseName="posts" inverseEntity="FBUser" syncable="YES"/>
         <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBGroup" inverseName="posts" inverseEntity="FBGroup" syncable="YES"/>
     </entity>
     <entity name="FBUser" representedClassName="FBUser" parentEntity="FBObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPost" inverseName="fromUser" inverseEntity="FBPost" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPost" inverseName="fromUser" inverseEntity="FBPost" syncable="YES"/>
     </entity>
     <elements>
         <element name="FBGroup" positionX="0" positionY="0" width="128" height="75"/>
