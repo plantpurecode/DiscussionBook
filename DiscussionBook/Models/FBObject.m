@@ -83,7 +83,7 @@ static const char FBObjectClassPropertiesKey;
     if(!mapping) {
         Class cls = [self class];
         NSMutableDictionary *mergedMapping = [NSMutableDictionary new];
-        while([cls superclass] != [FBObject class]) {
+        while(cls != [FBObject class]) {
             NSDictionary *propMapping = [cls propertyMapping];
             if([propMapping count]) {
                 [mergedMapping addEntriesFromDictionary:propMapping];
@@ -98,7 +98,7 @@ static const char FBObjectClassPropertiesKey;
 }
 
 + (NSDictionary *)propertyMapping {
-    return @{ @"id":@"identifier" };
+    return @{ @"id" : @"identifier"};
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary inManagedObjectContext:(NSManagedObjectContext *)context {
