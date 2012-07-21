@@ -10,11 +10,13 @@
 
 @interface DBAppDelegate ()
 
-- (void)createInitialViewController;
+@property (nonatomic, weak) UIViewController *rootViewController;
 
 @end
 
 @implementation DBAppDelegate
+
+@synthesize rootViewController = _rootViewController;
 
 @synthesize window = _window;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -24,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self createInitialViewController];
+    self.window.rootViewController = self.rootViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -73,12 +75,16 @@
 
 #pragma mark - Private
 
-- (void)createInitialViewController {
-    NSString *storybaordName = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone";
-    storybaordName = [NSString stringWithFormat:@"DBStoryboard_%@", storybaordName];
+- (UIViewController *)rootViewController {
+    if(!_rootViewController) {
+        NSString *storybaordName = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone";
+        storybaordName = [NSString stringWithFormat:@"DBStoryboard_%@", storybaordName];
 
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storybaordName bundle:nil];
-    self.window.rootViewController = [storyboard instantiateInitialViewController];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storybaordName bundle:nil];
+        _rootViewController = [storyboard instantiateInitialViewController];
+    }
+    
+    return _rootViewController;
 }
     
 #pragma mark - Core Data stack
