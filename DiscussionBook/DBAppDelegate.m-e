@@ -29,6 +29,18 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.rootViewController;
     [self.window makeKeyAndVisible];
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        NSManagedObjectContext *context = [self managedObjectContext];
+        for (NSUInteger i = 0; i < 10; ++i) {
+            id object = [NSEntityDescription insertNewObjectForEntityForName:@"FBGroup" inManagedObjectContext:context];
+            [object setValue:[NSString stringWithFormat:@"Group #%d", i] forKey:@"name"];
+        }
+        [context save:nil];
+    });
+    
     return YES;
 }
 
@@ -81,6 +93,7 @@
         UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[UINavigationBar class] toolbarClass:[UIToolbar class]];
         
         DBGroupListController *groupListController = [[DBGroupListController alloc] init];
+        [groupListController setManagedObjectContext:[self managedObjectContext]];
         [navigationController setViewControllers:@[groupListController]];
         
         _rootViewController = navigationController;
@@ -130,14 +143,14 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"DiscussionBook.sqlite"];
     
     NSError *error = nil;
-    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    
+    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];    
     NSDictionary *options = @{
         NSMigratePersistentStoresAutomaticallyOption : @YES,
         NSInferMappingModelAutomaticallyOption : @YES
     };
     
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+#warning "This should be a SQLite store at some point"
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          

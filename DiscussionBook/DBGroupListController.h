@@ -10,4 +10,6 @@
 
 @interface DBGroupListController : UITableViewController
 
+@property (strong) NSManagedObjectContext *managedObjectContext;
+
 @end

@@ -15,4 +15,6 @@
 @property (nonatomic, retain) NSFetchRequest *fetchRequest;
 @property (nonatomic, copy) NSString *cellReuseIdentifier;
 
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
