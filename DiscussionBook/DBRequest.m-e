@@ -49,14 +49,10 @@ static NSString * DBRequestMethods[] = {
     id _mergeNotificationObserver;
 }
 
-@synthesize successBlock, failureBlock;
-
-@synthesize route, parameters, method;
-@synthesize responseObjectsKeyPath, responseObjectType;
-
-- (id)init {
+- (id)initWithResponseObjectType:(Class)responseObjectType {
     self = [super init];
     if(self) {
+        _responseObjectType = responseObjectType;
         _state = DBRequestStateReady;
     }
     return self;
@@ -127,14 +123,14 @@ static NSString * DBRequestMethods[] = {
         _state = DBRequestStateFinished;
     }];
     
-    if(failureBlock) {
-        failureBlock(error);
+    if(_failureBlock) {
+        _failureBlock(error);
     }
 }
 
 - (void)request:(FBRequest *)request didLoad:(id)result {
-    if(responseObjectsKeyPath) {
-        result = [result valueForKeyPath:responseObjectsKeyPath];
+    if(_responseObjectsKeyPath) {
+        result = [result valueForKeyPath:_responseObjectsKeyPath];
     }
 
     if([result isKindOfClass:[NSArray class]]) {
@@ -180,8 +176,8 @@ static NSString * DBRequestMethods[] = {
        NSError *error = nil;
        [_context save:&error];
        
-       if(successBlock) {
-           dispatch_async(dispatch_get_main_queue(), successBlock);
+       if(_successBlock) {
+           dispatch_async(dispatch_get_main_queue(), _successBlock);
        }
                                        
        _state = DBRequestStateFinished;
