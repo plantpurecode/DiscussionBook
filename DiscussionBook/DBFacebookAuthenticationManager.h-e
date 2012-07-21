@@ -12,6 +12,7 @@
 
 @property (nonatomic, getter = isAuthenticated) BOOL authenticated;
 @property (nonatomic, readonly) NSString *accessToken;
+@property (nonatomic, readonly) NSDate   *expirationDate;
 
 + (id)sharedManager;
 

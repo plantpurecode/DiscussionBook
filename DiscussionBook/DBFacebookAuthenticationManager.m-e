@@ -11,7 +11,8 @@
 
 
 static NSString *DBFBApplicationID = @"138133029659393";
-static NSString *FBNSUserDefaultsAccessTokenKey = @"FBNSUserDefaultsAccessTokenKey";
+static NSString *FBNSUserDefaultsAccessTokenKey     = @"FBNSUserDefaultsAccessTokenKey";
+static NSString *FBNSUserDefaultsExpirationDateKey = @"FBNSUserDefaultsExpirationDateKey";
 
 @interface DBFacebookAuthenticationManager() <FBSessionDelegate, FBDialogDelegate>
 @end
@@ -36,14 +37,20 @@ static NSString *FBNSUserDefaultsAccessTokenKey = @"FBNSUserDefaultsAccessTokenK
     if(self) {
         _facebookObject = [[Facebook alloc] initWithAppId:DBFBApplicationID
                                               andDelegate:self];
-        _facebookObject.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:FBNSUserDefaultsAccessTokenKey];
-        _facebookObject.expirationDate = [NSDate distantFuture];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _facebookObject.accessToken    = [defaults objectForKey:FBNSUserDefaultsAccessTokenKey];
+        _facebookObject.expirationDate = [defaults objectForKey:FBNSUserDefaultsExpirationDateKey];
     }
     return self;
 }
 
 - (NSString *)accessToken {
     return [_facebookObject accessToken];
+}
+
+- (NSDate *)expirationDate {
+    return [_facebookObject expirationDate];
 }
 
 - (BOOL)isAuthenticated {
@@ -82,26 +89,46 @@ static NSString *FBNSUserDefaultsAccessTokenKey = @"FBNSUserDefaultsAccessTokenK
 
 - (void)fbDidLogin {
     NSString *accessToken = [self accessToken];
+    NSDate   *expiration  = [self expirationDate];
+    
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:FBNSUserDefaultsAccessTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:expiration  forKey:FBNSUserDefaultsExpirationDateKey];
+    
+    if(_queuedSuccessBlock)
+        _queuedSuccessBlock(YES);
 }
 
 - (void)fbDidLogout {
     [NSUserDefaults resetStandardUserDefaults];
 }
 
+- (void)fbSessionInvalidated {
+    //...
+}
+
 - (void)fbDidNotLogin:(BOOL)cancelled {
     //do something here...
+    
+    if(_queuedSuccessBlock)
+        _queuedSuccessBlock(NO);
 }
 
 - (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-    //do something here...
-}
-
-- (void)fbSessionInvalidated {
-    //do something here...
+    [[NSUserDefaults standardUserDefaults] setObject:accessToken  forKey:FBNSUserDefaultsAccessTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:expiresAt    forKey:FBNSUserDefaultsExpirationDateKey];
 }
 
 #pragma mark - FBDialogDelegate
+
+- (void)dialogDidComplete:(FBDialog *)dialog {
+    if(_queuedSuccessBlock)
+        _queuedSuccessBlock(YES);
+}
+
+- (void)dialogDidNotComplete:(FBDialog *)dialog {
+    if(_queuedSuccessBlock)
+        _queuedSuccessBlock(NO);
+}
 
 - (void)dialogCompleteWithUrl:(NSURL *)url {
     if(_queuedSuccessBlock)
