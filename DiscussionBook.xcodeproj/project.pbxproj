@@ -33,6 +33,13 @@
 			remoteGlobalIDString = 52EB7BE115BA3E6800C7E339;
 			remoteInfo = DiscussionBook;
 		};
+		52EB7CC415BA578600C7E339 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52EB7CBD15BA578600C7E339 /* facebook-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "facebook-ios-sdk";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +63,7 @@
 		52EB7C1115BA3E6800C7E339 /* DiscussionBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscussionBookTests.m; sourceTree = "<group>"; };
 		52EB7C2315BA453B00C7E339 /* DBStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DBStoryboard_iPhone.storyboard; path = Resources/DBStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		52EB7C2615BA46BE00C7E339 /* DBStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DBStoryboard_iPad.storyboard; path = Resources/DBStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		52EB7CBD15BA578600C7E339 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,7 @@
 		52EB7BEF15BA3E6800C7E339 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				52EB7C2915BA572A00C7E339 /* Vendor */,
 				52EB7BF015BA3E6800C7E339 /* DiscussionBook-Info.plist */,
 				52EB7BF115BA3E6800C7E339 /* InfoPlist.strings */,
 				52EB7BF415BA3E6800C7E339 /* main.m */,
@@ -157,6 +166,30 @@
 				52EB7C0D15BA3E6800C7E339 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52EB7C2915BA572A00C7E339 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				52EB7C2A15BA572A00C7E339 /* FBSDK */,
+			);
+			path = Vendor;
+			sourceTree = SOURCE_ROOT;
+		};
+		52EB7C2A15BA572A00C7E339 /* FBSDK */ = {
+			isa = PBXGroup;
+			children = (
+				52EB7CBD15BA578600C7E339 /* facebook-ios-sdk.xcodeproj */,
+			);
+			path = FBSDK;
+			sourceTree = "<group>";
+		};
+		52EB7CBE15BA578600C7E339 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52EB7CC515BA578600C7E339 /* libfacebook_ios_sdk.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +251,12 @@
 			mainGroup = 52EB7BD715BA3E6700C7E339;
 			productRefGroup = 52EB7BE315BA3E6800C7E339 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 52EB7CBE15BA578600C7E339 /* Products */;
+					ProjectRef = 52EB7CBD15BA578600C7E339 /* facebook-ios-sdk.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				52EB7BE115BA3E6800C7E339 /* DiscussionBook */,
@@ -225,6 +264,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		52EB7CC515BA578600C7E339 /* libfacebook_ios_sdk.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfacebook_ios_sdk.a;
+			remoteRef = 52EB7CC415BA578600C7E339 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		52EB7BE015BA3E6800C7E339 /* Resources */ = {
