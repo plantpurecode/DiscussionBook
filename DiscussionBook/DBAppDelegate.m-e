@@ -11,7 +11,7 @@
 
 @interface DBAppDelegate ()
 
-@property (nonatomic, weak) UIViewController *rootViewController;
+@property (nonatomic, strong) UIViewController *rootViewController;
 
 @end
 

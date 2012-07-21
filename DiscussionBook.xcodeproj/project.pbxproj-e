@@ -23,6 +23,7 @@
 		52EB7C1215BA3E6800C7E339 /* DiscussionBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EB7C1115BA3E6800C7E339 /* DiscussionBookTests.m */; };
 		5526636D15BA589600D822D0 /* DBGroupListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526636C15BA589600D822D0 /* DBGroupListController.m */; };
 		5526637015BA58B600D822D0 /* DBGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */; };
+		5526637215BA5BD400D822D0 /* DBGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		5526636C15BA589600D822D0 /* DBGroupListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupListController.m; sourceTree = "<group>"; };
 		5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableViewCell.h; sourceTree = "<group>"; };
 		5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableViewCell.m; sourceTree = "<group>"; };
+		5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBGroupTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				5526636C15BA589600D822D0 /* DBGroupListController.m */,
 				5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */,
 				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
+				5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */,
 				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
 			);
 			path = DiscussionBook;
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EB7BF315BA3E6800C7E339 /* InfoPlist.strings in Resources */,
+				5526637215BA5BD400D822D0 /* DBGroupTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
