@@ -23,6 +23,8 @@
 		52EB7C1215BA3E6800C7E339 /* DiscussionBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EB7C1115BA3E6800C7E339 /* DiscussionBookTests.m */; };
 		52EB7C2415BA453B00C7E339 /* DBStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EB7C2315BA453B00C7E339 /* DBStoryboard_iPhone.storyboard */; };
 		52EB7C2715BA46BE00C7E339 /* DBStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EB7C2615BA46BE00C7E339 /* DBStoryboard_iPad.storyboard */; };
+		5526636D15BA589600D822D0 /* DBGroupListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526636C15BA589600D822D0 /* DBGroupListController.m */; };
+		5526637015BA58B600D822D0 /* DBGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		52EB7C2315BA453B00C7E339 /* DBStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DBStoryboard_iPhone.storyboard; path = Resources/DBStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		52EB7C2615BA46BE00C7E339 /* DBStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DBStoryboard_iPad.storyboard; path = Resources/DBStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		52EB7CBD15BA578600C7E339 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "src/facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
+		5526636B15BA589600D822D0 /* DBGroupListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupListController.h; sourceTree = "<group>"; };
+		5526636C15BA589600D822D0 /* DBGroupListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupListController.m; sourceTree = "<group>"; };
+		5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableViewCell.h; sourceTree = "<group>"; };
+		5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,10 @@
 			children = (
 				52EB7BF715BA3E6800C7E339 /* DBAppDelegate.h */,
 				52EB7BF815BA3E6800C7E339 /* DBAppDelegate.m */,
+				5526636B15BA589600D822D0 /* DBGroupListController.h */,
+				5526636C15BA589600D822D0 /* DBGroupListController.m */,
+				5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */,
+				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
 				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
 				52EB7C2315BA453B00C7E339 /* DBStoryboard_iPhone.storyboard */,
 				52EB7C2615BA46BE00C7E339 /* DBStoryboard_iPad.storyboard */,
@@ -320,6 +330,8 @@
 				52EB7BF515BA3E6800C7E339 /* main.m in Sources */,
 				52EB7BF915BA3E6800C7E339 /* DBAppDelegate.m in Sources */,
 				52EB7BFC15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld in Sources */,
+				5526636D15BA589600D822D0 /* DBGroupListController.m in Sources */,
+				5526637015BA58B600D822D0 /* DBGroupTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
