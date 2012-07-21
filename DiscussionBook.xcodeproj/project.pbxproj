@@ -21,6 +21,8 @@
 		52EB7C0715BA3E6800C7E339 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BEC15BA3E6800C7E339 /* CoreData.framework */; };
 		52EB7C0F15BA3E6800C7E339 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52EB7C0D15BA3E6800C7E339 /* InfoPlist.strings */; };
 		52EB7C1215BA3E6800C7E339 /* DiscussionBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EB7C1115BA3E6800C7E339 /* DiscussionBookTests.m */; };
+		52EB7C2415BA453B00C7E339 /* DBStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EB7C2315BA453B00C7E339 /* DBStoryboard_iPhone.storyboard */; };
+		52EB7C2715BA46BE00C7E339 /* DBStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EB7C2615BA46BE00C7E339 /* DBStoryboard_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		52EB7C0E15BA3E6800C7E339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52EB7C1015BA3E6800C7E339 /* DiscussionBookTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscussionBookTests.h; sourceTree = "<group>"; };
 		52EB7C1115BA3E6800C7E339 /* DiscussionBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscussionBookTests.m; sourceTree = "<group>"; };
+		52EB7C2315BA453B00C7E339 /* DBStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DBStoryboard_iPhone.storyboard; path = Resources/DBStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		52EB7C2615BA46BE00C7E339 /* DBStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DBStoryboard_iPad.storyboard; path = Resources/DBStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				52EB7BEE15BA3E6800C7E339 /* DiscussionBook */,
+				52EB7BEF15BA3E6800C7E339 /* Supporting Files */,
 				52EB7C0A15BA3E6800C7E339 /* DiscussionBookTests */,
 				52EB7BE515BA3E6800C7E339 /* Frameworks */,
 				52EB7BE315BA3E6800C7E339 /* Products */,
@@ -117,7 +122,8 @@
 				52EB7BF715BA3E6800C7E339 /* DBAppDelegate.h */,
 				52EB7BF815BA3E6800C7E339 /* DBAppDelegate.m */,
 				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
-				52EB7BEF15BA3E6800C7E339 /* Supporting Files */,
+				52EB7C2315BA453B00C7E339 /* DBStoryboard_iPhone.storyboard */,
+				52EB7C2615BA46BE00C7E339 /* DBStoryboard_iPad.storyboard */,
 			);
 			path = DiscussionBook;
 			sourceTree = "<group>";
@@ -131,6 +137,7 @@
 				52EB7BF615BA3E6800C7E339 /* DiscussionBook-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = DiscussionBook;
 			sourceTree = "<group>";
 		};
 		52EB7C0A15BA3E6800C7E339 /* DiscussionBookTests */ = {
@@ -225,6 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EB7BF315BA3E6800C7E339 /* InfoPlist.strings in Resources */,
+				52EB7C2415BA453B00C7E339 /* DBStoryboard_iPhone.storyboard in Resources */,
+				52EB7C2715BA46BE00C7E339 /* DBStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +434,7 @@
 				52EB7C1715BA3E6800C7E339 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52EB7C1815BA3E6800C7E339 /* Build configuration list for PBXNativeTarget "DiscussionBookTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +443,7 @@
 				52EB7C1A15BA3E6800C7E339 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

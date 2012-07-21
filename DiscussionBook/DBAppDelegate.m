@@ -8,6 +8,12 @@
 
 #import "DBAppDelegate.h"
 
+@interface DBAppDelegate ()
+
+- (void)createInitialViewController;
+
+@end
+
 @implementation DBAppDelegate
 
 @synthesize window = _window;
@@ -18,8 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    [self createInitialViewController];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -66,6 +71,16 @@
     }
 }
 
+#pragma mark - Private
+
+- (void)createInitialViewController {
+    NSString *storybaordName = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone";
+    storybaordName = [NSString stringWithFormat:@"DBStoryboard_%@", storybaordName];
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storybaordName bundle:nil];
+    self.window.rootViewController = [storyboard instantiateInitialViewController];
+}
+    
 #pragma mark - Core Data stack
 
 // Returns the managed object context for the application.
