@@ -26,6 +26,14 @@ typedef enum {
     DBRequestStateCancelled,
 } DBRequestState;
 
+static NSString * DBRequestMethods[] = {
+    @"GET",
+    @"POST",
+    @"DELETE",
+    @"PUT",
+    @"HEAD"
+};
+
 @interface DBRequest() <FBRequestDelegate>
 
 @property (nonatomic, readonly) DBAppDelegate *appDelegate;
@@ -100,7 +108,7 @@ typedef enum {
     [_context setPersistentStoreCoordinator:psc];
     
     _request = [FBRequest new];
-    _request.httpMethod = [self method];
+    _request.httpMethod = DBRequestMethods[[self method]];
     _request.url        = [self route];
     _request.params     = [[self parameters] mutableCopy];
     _request.delegate   = self;

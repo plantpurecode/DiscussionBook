@@ -9,12 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "FBRequest.h"
 
+typedef enum {
+    DBRequestMethodGET = 0,
+    DBRequestMethodPOST,
+    DBRequestMethodDELETE,
+    DBRequestMethodPUT,
+    DBRequestMethodHEAD
+} DBRequestMethod;
+
 @interface DBRequest : NSOperation
 
 @property (nonatomic, strong) Class responseObjectType;
 
 @property (nonatomic, copy) NSString *route;
-@property (nonatomic, copy) NSString *method;
+@property (nonatomic) DBRequestMethod method;
 @property (nonatomic, copy) NSString *responseObjectsKeyPath;
 @property (nonatomic, copy) NSDictionary *parameters;
 
