@@ -7,6 +7,7 @@
 //
 
 #import "DBAppDelegate.h"
+#import "DBGroupListController.h"
 
 @interface DBAppDelegate ()
 
@@ -77,11 +78,12 @@
 
 - (UIViewController *)rootViewController {
     if(!_rootViewController) {
-        NSString *storybaordName = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? @"iPad" : @"iPhone";
-        storybaordName = [NSString stringWithFormat:@"DBStoryboard_%@", storybaordName];
-
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storybaordName bundle:nil];
-        _rootViewController = [storyboard instantiateInitialViewController];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[UINavigationBar class] toolbarClass:[UIToolbar class]];
+        
+        DBGroupListController *groupListController = [[DBGroupListController alloc] init];
+        [navigationController setViewControllers:@[groupListController]];
+        
+        _rootViewController = navigationController;
     }
     
     return _rootViewController;
