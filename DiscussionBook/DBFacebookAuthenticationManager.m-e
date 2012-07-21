@@ -42,8 +42,12 @@ static NSString *FBNSUserDefaultsAccessTokenKey = @"FBNSUserDefaultsAccessTokenK
     return self;
 }
 
-- (BOOL)authenticated {
+- (BOOL)isAuthenticated {
     return [_facebookObject isSessionValid];
+}
+
+- (void)handleOpenURL:(NSURL *)url {
+    [_facebookObject handleOpenURL:url];
 }
 
 - (void)authenticateWithBlock:(void(^)(BOOL success))block {
