@@ -19,6 +19,13 @@ UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
     return queue;
 }
 
+typedef enum {
+    DBRequestStateReady,
+    DBRequestStateStarted,
+    DBRequestStateFinished,
+    DBRequestStateCancelled,
+} DBRequestState;
+
 @interface DBRequest() <FBRequestDelegate>
 
 @property (nonatomic, readonly) DBAppDelegate *appDelegate;
@@ -28,6 +35,8 @@ UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
 @implementation DBRequest {
     FBRequest *_request;
     NSManagedObjectContext *_context;
+    
+    DBRequestState _state;
 
     id _mergeNotificationObserver;
 }
@@ -37,15 +46,51 @@ UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
 @synthesize route, parameters, method;
 @synthesize responseObjectsKeyPath, responseObjectType;
 
+- (id)init {
+    self = [super init];
+    if(self) {
+        _state = DBRequestStateReady;
+    }
+    return self;
+}
+
+- (BOOL)isFinished {
+    return _state == DBRequestStateFinished;
+}
+
+- (BOOL)isCancelled {
+    return _state == DBRequestStateCancelled;
+}
+
+- (BOOL)isExecuting {
+    return _state == DBRequestStateStarted;
+}
+
+- (BOOL)isReady {
+    return _state == DBRequestStateReady;
+}
+
 - (BOOL)isConcurrent {
     return YES;
 }
 
 - (void)cancel {
+    [self _performKVCModificationWithKey:@"isCancelled" block:^{
+        _state = DBRequestStateCancelled;
+    }];
+    
     [super cancel];
     
     _mergeNotificationObserver = nil;
     [[_request connection] cancel];
+}
+
+- (void)start {
+    [self _performKVCModificationWithKey:@"isStarted" block:^{
+        _state = DBRequestStateStarted;
+    }];
+    
+    [super start];
 }
 
 - (void)main {
@@ -70,6 +115,10 @@ UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
 #pragma mark - FBRequestDelegate
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
+    [self _performKVCModificationWithKey:@"isFinished" block:^{
+        _state = DBRequestStateFinished;
+    }];
+    
     if(failureBlock) {
         failureBlock(error);
     }
@@ -97,25 +146,38 @@ UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
     return [[UIApplication sharedApplication] delegate];
 }
 
-- (void)_invokeSuccessBlock {
-    void (^notificationBlock)(NSNotification *) = ^(NSNotification *note) {
-        _mergeNotificationObserver = nil;
-        
-        NSManagedObjectContext *mainContext = [[self appDelegate] managedObjectContext];
-        [mainContext mergeChangesFromContextDidSaveNotification:note];
-    };
-    
-    _mergeNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
-                                                                                   object:nil
-                                                                                    queue:[NSOperationQueue mainQueue]
-                                                                               usingBlock:notificationBlock];
-    
-    NSError *error = nil;
-    [_context save:&error];
-    
-    if(successBlock) {
-        dispatch_async(dispatch_get_main_queue(), successBlock);
+- (void)_performKVCModificationWithKey:(NSString *)key block:(dispatch_block_t)block {
+    [self willChangeValueForKey:key];
+    if(block) {
+        block();
     }
+    [self didChangeValueForKey:key];
+}
+
+- (void)_invokeSuccessBlock {
+    [self _performKVCModificationWithKey:@"isFinished"
+                                   block:^{
+       void (^notificationBlock)(NSNotification *) = ^(NSNotification *note) {
+           _mergeNotificationObserver = nil;
+           
+           NSManagedObjectContext *mainContext = [[self appDelegate] managedObjectContext];
+           [mainContext mergeChangesFromContextDidSaveNotification:note];
+       };
+       
+       _mergeNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
+                                                                                      object:nil
+                                                                                       queue:[NSOperationQueue mainQueue]
+                                                                                  usingBlock:notificationBlock];
+       
+       NSError *error = nil;
+       [_context save:&error];
+       
+       if(successBlock) {
+           dispatch_async(dispatch_get_main_queue(), successBlock);
+       }
+                                       
+       _state = DBRequestStateFinished;
+    }];
 }
 
 - (void)_createModelObjectWithDictionary:(NSDictionary *)dictionary {
