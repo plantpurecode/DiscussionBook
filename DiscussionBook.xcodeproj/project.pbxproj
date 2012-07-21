@@ -39,18 +39,18 @@
 		52EB7BE815BA3E6800C7E339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52EB7BEA15BA3E6800C7E339 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		52EB7BEC15BA3E6800C7E339 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		52EB7BF015BA3E6800C7E339 /* DiscussionBook-Info.plist */ = {isa = PBXFileReference; path = "DiscussionBook-Info.plist"; sourceTree = "<group>"; };
+		52EB7BF015BA3E6800C7E339 /* DiscussionBook-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiscussionBook-Info.plist"; sourceTree = "<group>"; };
 		52EB7BF215BA3E6800C7E339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52EB7BF415BA3E6800C7E339 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		52EB7BF615BA3E6800C7E339 /* DiscussionBook-Prefix.pch */ = {isa = PBXFileReference; path = "DiscussionBook-Prefix.pch"; sourceTree = "<group>"; };
-		52EB7BF715BA3E6800C7E339 /* DBAppDelegate.h */ = {isa = PBXFileReference; path = DBAppDelegate.h; sourceTree = "<group>"; };
+		52EB7BF615BA3E6800C7E339 /* DiscussionBook-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DiscussionBook-Prefix.pch"; sourceTree = "<group>"; };
+		52EB7BF715BA3E6800C7E339 /* DBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBAppDelegate.h; sourceTree = "<group>"; };
 		52EB7BF815BA3E6800C7E339 /* DBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBAppDelegate.m; sourceTree = "<group>"; };
 		52EB7BFB15BA3E6800C7E339 /* DiscussionBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiscussionBook.xcdatamodel; sourceTree = "<group>"; };
 		52EB7C0215BA3E6800C7E339 /* DiscussionBookTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiscussionBookTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB7C0315BA3E6800C7E339 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		52EB7C0C15BA3E6800C7E339 /* DiscussionBookTests-Info.plist */ = {isa = PBXFileReference; path = "DiscussionBookTests-Info.plist"; sourceTree = "<group>"; };
+		52EB7C0C15BA3E6800C7E339 /* DiscussionBookTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DiscussionBookTests-Info.plist"; sourceTree = "<group>"; };
 		52EB7C0E15BA3E6800C7E339 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		52EB7C1015BA3E6800C7E339 /* DiscussionBookTests.h */ = {isa = PBXFileReference; path = DiscussionBookTests.h; sourceTree = "<group>"; };
+		52EB7C1015BA3E6800C7E339 /* DiscussionBookTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscussionBookTests.h; sourceTree = "<group>"; };
 		52EB7C1115BA3E6800C7E339 /* DiscussionBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscussionBookTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
