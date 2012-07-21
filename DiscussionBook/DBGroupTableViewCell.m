@@ -18,6 +18,8 @@
     _representedObject = representedObject;
     if (_representedObject) {
         // do stuff
+        
+        [[self textLabel] setText:[representedObject valueForKey:@"name"]];
     }
 }
 

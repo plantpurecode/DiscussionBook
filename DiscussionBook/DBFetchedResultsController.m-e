@@ -32,7 +32,9 @@
 #pragma mark -
 
 - (void)setTableView:(UITableView *)tableView {
+    [_tableView setDataSource:nil];
     _tableView = tableView;
+    [_tableView setDataSource:self];
     [_tableView reloadData];
 }
 

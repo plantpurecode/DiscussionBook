@@ -33,15 +33,79 @@
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        NSManagedObjectContext *context = [self managedObjectContext];
-        for (NSUInteger i = 0; i < 10; ++i) {
-            id object = [NSEntityDescription insertNewObjectForEntityForName:@"FBGroup" inManagedObjectContext:context];
-            [object setValue:[NSString stringWithFormat:@"Group #%d", i] forKey:@"name"];
-        }
-        [context save:nil];
+        [self performMagic];
     });
     
     return YES;
+}
+
+- (NSArray *)groups {
+    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
+    NSManagedObjectContext *c = [self managedObjectContext];
+    return [c executeFetchRequest:fr error:nil];
+}
+
+- (NSInteger)numberOfGroups {
+    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
+    NSManagedObjectContext *c = [self managedObjectContext];
+    NSInteger count = [c countForFetchRequest:fr error:nil];
+    return count;
+}
+
+- (void)performMagic {
+    static NSInteger newGroupNumber = 0;
+    
+    static NSInteger OperationInsert = 1 << 0;
+    static NSInteger OperationUpdate = 1 << 1;
+    static NSInteger OperationDelete = 1 << 2;
+    
+    NSInteger operation = (arc4random() % 6) + 1; // get a number 1-7
+    
+    NSManagedObjectContext *c = [self managedObjectContext];
+    NSMutableArray *groups = [[self groups] mutableCopy];
+    
+    if (operation & OperationDelete && [groups count] > 0) {
+        // pick a random number of groups to delete
+        NSInteger numberOfGroupsToDelete = arc4random() % [groups count];
+        for (NSUInteger i = 0; i < numberOfGroupsToDelete; ++i) {
+            // pick a random group
+            NSInteger indexOfObject = arc4random() % [groups count];
+            id object = [groups objectAtIndex:indexOfObject];
+            // delete it
+            [c deleteObject:object];
+            [groups removeObjectAtIndex:indexOfObject];
+        }
+    }
+    
+    if (operation & OperationUpdate && [groups count] > 0) {
+        NSInteger numberOfGroupsToUpdate = arc4random() % [groups count];
+        for (NSUInteger i = 0; i < numberOfGroupsToUpdate; ++i) {
+            // pick a random group
+            NSInteger indexOfObject = arc4random() % [groups count];
+            id object = [groups objectAtIndex:indexOfObject];
+            NSString *name = [object valueForKey:@"name"];
+            name = [name stringByAppendingString:@" (Updated)"];
+            [object setValue:name forKey:@"name"];
+        }
+    }
+    
+    if (operation & OperationInsert) {
+        // insert some groups!
+        NSInteger groupsToInsert = arc4random() % 5;
+        for (NSInteger i = 0; i < groupsToInsert; ++i) {
+            id object = [NSEntityDescription insertNewObjectForEntityForName:@"FBGroup" inManagedObjectContext:c];
+            NSString *name = [NSString stringWithFormat:@"Group #%d", newGroupNumber++];
+            [object setValue:name forKey:@"name"];
+        }
+    }
+    
+    [c save:nil];
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self performMagic];
+    });
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
