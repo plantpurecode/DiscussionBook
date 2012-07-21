@@ -33,13 +33,14 @@ UIKIT_STATIC_INLINE NSDictionary *DBPropertiesForClass(Class cls) {
         }
         free(typeStr);
     }
+    free(properties);
 
     return [props copy];
 }
 
 UIKIT_STATIC_INLINE NSDictionary *DBRecursivePropertiesForSubclassesOfClass(Class cls) {
     NSMutableDictionary *props = [NSMutableDictionary new];
-    while ([cls superclass] != [NSObject class]) {
+    while ([cls isKindOfClass:[FBObject class]]) {
         [props addEntriesFromDictionary:DBPropertiesForClass(cls)];
         
         cls = [cls superclass];
@@ -70,7 +71,7 @@ static const char FBObjectClassPropertiesKey;
     if(!mapping) {
         Class cls = [self class];
         NSMutableDictionary *mergedMapping = [NSMutableDictionary new];
-        while(cls != [FBObject class]) {
+        while(cls != [FBObject superclass]) {
             NSDictionary *propMapping = [cls propertyMapping];
             if([propMapping count]) {
                 [mergedMapping addEntriesFromDictionary:propMapping];
