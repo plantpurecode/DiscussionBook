@@ -18,9 +18,9 @@
         <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPost" inverseName="fromUser" inverseEntity="FBPost" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FBGroup" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="FBObject" positionX="142" positionY="-195" width="128" height="60"/>
-        <element name="FBPost" positionX="-144" positionY="-186" width="128" height="105"/>
-        <element name="FBUser" positionX="-261" positionY="0" width="128" height="75"/>
+        <element name="FBGroup" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FBObject" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FBPost" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FBUser" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

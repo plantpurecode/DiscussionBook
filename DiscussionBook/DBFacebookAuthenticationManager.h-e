@@ -11,11 +11,12 @@
 @interface DBFacebookAuthenticationManager : NSObject
 
 @property (nonatomic, getter = isAuthenticated) BOOL authenticated;
+@property (nonatomic, readonly) NSString *accessToken;
 
 + (id)sharedManager;
 
 - (void)authenticateWithBlock:(void(^)(BOOL success))block;
 
-- (void)handleOpenURL:(NSURL *)url;
+- (BOOL)handleOpenURL:(NSURL *)url;
 
 @end

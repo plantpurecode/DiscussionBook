@@ -42,38 +42,46 @@ static NSString *FBNSUserDefaultsAccessTokenKey = @"FBNSUserDefaultsAccessTokenK
     return self;
 }
 
+- (NSString *)accessToken {
+    return [_facebookObject accessToken];
+}
+
 - (BOOL)isAuthenticated {
     return [_facebookObject isSessionValid];
 }
 
-- (void)handleOpenURL:(NSURL *)url {
-    [_facebookObject handleOpenURL:url];
+- (BOOL)handleOpenURL:(NSURL *)url {
+    return [_facebookObject handleOpenURL:url];
 }
 
 - (void)authenticateWithBlock:(void(^)(BOOL success))block {
     _queuedSuccessBlock = block;
-
-    /*
-     client_id=YOUR_APP_ID
-     &redirect_uri=YOUR_REDIRECT_URL
-     &state=YOUR_STATE_VALUE
-     &scope=COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES
-     */
     
-    NSDictionary *parameters = @{
+    if ([self isAuthenticated]) {
+        [self dialogCompleteWithUrl:nil];
+    } else {
+        /*
+         client_id=YOUR_APP_ID
+         &redirect_uri=YOUR_REDIRECT_URL
+         &state=YOUR_STATE_VALUE
+         &scope=COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES
+         */
+        
+        NSDictionary *parameters = @{
         @"client_id" : DBFBApplicationID,
         @"scope" : @"user_groups"
-    };
-    
-    [_facebookObject dialog:@"oauth"
-                  andParams:[parameters mutableCopy]
-                andDelegate:self];
+        };
+        
+        [_facebookObject dialog:@"oauth"
+                      andParams:[parameters mutableCopy]
+                    andDelegate:self];
+    }
 }
 
 #pragma mark - FBSessionDelegate
 
 - (void)fbDidLogin {
-    NSString *accessToken = [_facebookObject accessToken];
+    NSString *accessToken = [self accessToken];
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:FBNSUserDefaultsAccessTokenKey];
 }
 
@@ -82,6 +90,14 @@ static NSString *FBNSUserDefaultsAccessTokenKey = @"FBNSUserDefaultsAccessTokenK
 }
 
 - (void)fbDidNotLogin:(BOOL)cancelled {
+    //do something here...
+}
+
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+    //do something here...
+}
+
+- (void)fbSessionInvalidated {
     //do something here...
 }
 

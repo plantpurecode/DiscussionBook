@@ -26,20 +26,22 @@
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
         [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
         [resultsController setFetchRequest:fetchRequest];
-        
-        // start loading the groups
-        DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
-        [request setRoute:@"me/groups"];
-        [request setResponseObjectsKeyPath:@"data"];
-        [request setFailureBlock:^(NSError *error) {
-            NSLog(@"failed with error: %@", error);
-        }];
-        [request setCompletionBlock:^{
-            NSLog(@"completed!");
-        }];
-        [request execute];
     }
     return self;
+}
+
+- (void)requestUserGroups {
+    // start loading the groups
+    DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
+    [request setRoute:@"me/groups"];
+    [request setResponseObjectsKeyPath:@"data"];
+    [request setFailureBlock:^(NSError *error) {
+        NSLog(@"failed with error: %@", error);
+    }];
+    [request setCompletionBlock:^{
+        NSLog(@"completed!");
+    }];
+    [request execute];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {

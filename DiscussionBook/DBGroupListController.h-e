@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+- (void)requestUserGroups;
+
 @end

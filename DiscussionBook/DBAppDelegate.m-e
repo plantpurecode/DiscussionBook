@@ -8,6 +8,7 @@
 
 #import "DBAppDelegate.h"
 #import "DBGroupListController.h"
+#import "DBFacebookAuthenticationManager.h"
 
 @interface DBAppDelegate ()
 
@@ -15,7 +16,9 @@
 
 @end
 
-@implementation DBAppDelegate
+@implementation DBAppDelegate {
+    DBGroupListController *_groupListController;
+}
 
 @synthesize rootViewController = _rootViewController;
 
@@ -30,6 +33,8 @@
     self.window.rootViewController = self.rootViewController;
     [self.window makeKeyAndVisible];
     
+    [self attemptToLogIn];
+    
 //    int64_t delayInSeconds = 2.0;
 //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
 //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -39,73 +44,19 @@
     return YES;
 }
 
-- (NSArray *)groups {
-    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
-    NSManagedObjectContext *c = [self managedObjectContext];
-    return [c executeFetchRequest:fr error:nil];
-}
-
-- (NSInteger)numberOfGroups {
-    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
-    NSManagedObjectContext *c = [self managedObjectContext];
-    NSInteger count = [c countForFetchRequest:fr error:nil];
-    return count;
-}
-
-- (void)performMagic {
-    static NSInteger newGroupNumber = 0;
+- (void)attemptToLogIn {
     
-    static NSInteger OperationInsert = 1 << 0;
-    static NSInteger OperationUpdate = 1 << 1;
-    static NSInteger OperationDelete = 1 << 2;
-    
-    NSInteger operation = (arc4random() % 6) + 1; // get a number 1-7
-    
-    NSManagedObjectContext *c = [self managedObjectContext];
-    NSMutableArray *groups = [[self groups] mutableCopy];
-    
-    if (operation & OperationDelete && [groups count] > 0) {
-        // pick a random number of groups to delete
-        NSInteger numberOfGroupsToDelete = arc4random() % [groups count];
-        for (NSUInteger i = 0; i < numberOfGroupsToDelete; ++i) {
-            // pick a random group
-            NSInteger indexOfObject = arc4random() % [groups count];
-            id object = [groups objectAtIndex:indexOfObject];
-            // delete it
-            [c deleteObject:object];
-            [groups removeObjectAtIndex:indexOfObject];
+    [[DBFacebookAuthenticationManager sharedManager] authenticateWithBlock:^(BOOL success) {
+        if (success) {
+            [_groupListController requestUserGroups];
+        } else {
+            int64_t delayInSeconds = 2.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self attemptToLogIn];
+            });
         }
-    }
-    
-    if (operation & OperationUpdate && [groups count] > 0) {
-        NSInteger numberOfGroupsToUpdate = arc4random() % [groups count];
-        for (NSUInteger i = 0; i < numberOfGroupsToUpdate; ++i) {
-            // pick a random group
-            NSInteger indexOfObject = arc4random() % [groups count];
-            id object = [groups objectAtIndex:indexOfObject];
-            NSString *name = [object valueForKey:@"name"];
-            name = [name stringByAppendingString:@" (Updated)"];
-            [object setValue:name forKey:@"name"];
-        }
-    }
-    
-    if (operation & OperationInsert) {
-        // insert some groups!
-        NSInteger groupsToInsert = arc4random() % 5;
-        for (NSInteger i = 0; i < groupsToInsert; ++i) {
-            id object = [NSEntityDescription insertNewObjectForEntityForName:@"FBGroup" inManagedObjectContext:c];
-            NSString *name = [NSString stringWithFormat:@"Group #%d", newGroupNumber++];
-            [object setValue:name forKey:@"name"];
-        }
-    }
-    
-    [c save:nil];
-    
-    int64_t delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self performMagic];
-    });
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -137,7 +88,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-     return [_facebookObject handleOpenURL:url];
+     return [[DBFacebookAuthenticationManager sharedManager] handleOpenURL:url];
 }
 
 - (void)saveContext
@@ -161,9 +112,9 @@
         UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[UINavigationBar class] toolbarClass:[UIToolbar class]];
         
         NSManagedObjectContext *context = [self managedObjectContext];
-        DBGroupListController *groupListController = [[DBGroupListController alloc] init];
-        [groupListController setManagedObjectContext:context];
-        [navigationController setViewControllers:@[groupListController]];
+        _groupListController = [[DBGroupListController alloc] init];
+        [_groupListController setManagedObjectContext:context];
+        [navigationController setViewControllers:@[_groupListController]];
         
         _rootViewController = navigationController;
     }
@@ -219,7 +170,7 @@
         NSInferMappingModelAutomaticallyOption : @YES
     };
     
-#warning "This should be a SQLite store at some point"
+#warning Should this be a SQLite store at some point?
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
