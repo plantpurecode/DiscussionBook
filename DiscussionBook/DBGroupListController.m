@@ -10,6 +10,7 @@
 #import "DBGroupTableViewCell.h"
 #import "DBFetchedResultsController.h"
 #import "FBGroup.h"
+#import "DBRequest.h"
 
 @implementation DBGroupListController {
     DBFetchedResultsController *resultsController;
@@ -19,6 +20,9 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         [self setTitle:@"DiscussionBook"];
+        
+        DBRequest *request = [[DBRequest alloc] init];
+        [request setRoute:@"me/groups"];
     }
     return self;
 }

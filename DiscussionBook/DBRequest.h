@@ -13,7 +13,9 @@
 
 @property (nonatomic, strong) Class responseObjectType;
 
-@property (nonatomic, copy) NSString *route, *method, *responseObjectsKeyPath;
+@property (nonatomic, copy) NSString *route;
+@property (nonatomic, copy) NSString *method;
+@property (nonatomic, copy) NSString *responseObjectsKeyPath;
 @property (nonatomic, copy) NSDictionary *parameters;
 
 @property (nonatomic, copy) dispatch_block_t successBlock;
