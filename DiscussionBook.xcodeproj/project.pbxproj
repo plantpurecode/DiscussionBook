@@ -28,6 +28,8 @@
 		5526636D15BA589600D822D0 /* DBGroupListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526636C15BA589600D822D0 /* DBGroupListController.m */; };
 		5526637015BA58B600D822D0 /* DBGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */; };
 		5526637215BA5BD400D822D0 /* DBGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */; };
+		5526639015BB240700D822D0 /* UITableViewCell+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */; };
+		55F2F92115BB24DE0032F6E8 /* DBFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,10 @@
 		5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBGroupTableViewCell.h; sourceTree = "<group>"; };
 		5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBGroupTableViewCell.m; sourceTree = "<group>"; };
 		5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBGroupTableViewCell.xib; sourceTree = "<group>"; };
+		5526638E15BB240700D822D0 /* UITableViewCell+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+DiscussionBook.h"; sourceTree = "<group>"; };
+		5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+DiscussionBook.m"; sourceTree = "<group>"; };
+		55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFetchedResultsController.h; sourceTree = "<group>"; };
+		55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFetchedResultsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +168,12 @@
 				52EB7BF815BA3E6800C7E339 /* DBAppDelegate.m */,
 				5526636B15BA589600D822D0 /* DBGroupListController.h */,
 				5526636C15BA589600D822D0 /* DBGroupListController.m */,
+				5526638E15BB240700D822D0 /* UITableViewCell+DiscussionBook.h */,
+				5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */,
 				5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */,
 				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
+				55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */,
+				55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */,
 				5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */,
 				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
 				529F680215BA692700DDD81D /* Models */,
@@ -360,6 +370,8 @@
 				529F67FB15BA691F00DDD81D /* FBPost.m in Sources */,
 				529F67FE15BA691F00DDD81D /* FBGroup.m in Sources */,
 				529F680115BA691F00DDD81D /* FBUser.m in Sources */,
+				5526639015BB240700D822D0 /* UITableViewCell+DiscussionBook.m in Sources */,
+				55F2F92115BB24DE0032F6E8 /* DBFetchedResultsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

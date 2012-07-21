@@ -10,4 +10,15 @@
 
 @implementation DBGroupTableViewCell
 
+- (void)prepareForReuse {
+    [self setRepresentedObject:nil];
+}
+
+- (void)setRepresentedObject:(id)representedObject {
+    _representedObject = representedObject;
+    if (_representedObject) {
+        // do stuff
+    }
+}
+
 @end

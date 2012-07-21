@@ -7,6 +7,7 @@
 //
 
 #import "DBGroupListController.h"
+#import "DBGroupTableViewCell.h"
 
 @implementation DBGroupListController
 
@@ -14,6 +15,8 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         [self setTitle:@"DiscussionBook"];
+        UINib *nib = [UINib nibWithNibName:@"DBGroupTableViewCell" bundle:nil];
+        [[self tableView] registerNib:nib forCellReuseIdentifier:[DBGroupTableViewCell reuseIdentifier]];
     }
     return self;
 }

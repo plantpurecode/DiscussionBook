@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UITableViewCell+DiscussionBook.h"
 
 @interface DBGroupTableViewCell : UITableViewCell
+
+@property (nonatomic, retain) id representedObject;
 
 @end
