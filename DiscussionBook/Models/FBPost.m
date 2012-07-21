@@ -1,13 +1,18 @@
 //
-//  DBGroupTableViewCell.h
+//  FBPost.m
 //  DiscussionBook
 //
 //  Created by Jacob Relkin on 7/20/12.
 //  Copyright (c) 2012 Jacob Relkin. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FBPost.h"
 
-@interface DBGroupTableViewCell : UITableViewCell
+
+@implementation FBPost
+
+@dynamic createdDate;
+@dynamic message;
+@dynamic fromUser;
 
 @end

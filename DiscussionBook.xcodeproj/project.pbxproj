@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		529F67F815BA691F00DDD81D /* FBObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 529F67F715BA691F00DDD81D /* FBObject.m */; };
+		529F67FB15BA691F00DDD81D /* FBPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 529F67FA15BA691F00DDD81D /* FBPost.m */; };
+		529F67FE15BA691F00DDD81D /* FBGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 529F67FD15BA691F00DDD81D /* FBGroup.m */; };
+		529F680115BA691F00DDD81D /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 529F680015BA691F00DDD81D /* FBUser.m */; };
 		52EB7BE715BA3E6800C7E339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE615BA3E6800C7E339 /* UIKit.framework */; };
 		52EB7BE915BA3E6800C7E339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE815BA3E6800C7E339 /* Foundation.framework */; };
 		52EB7BEB15BA3E6800C7E339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BEA15BA3E6800C7E339 /* CoreGraphics.framework */; };
@@ -44,6 +48,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		529F67F615BA691F00DDD81D /* FBObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBObject.h; path = Models/FBObject.h; sourceTree = "<group>"; };
+		529F67F715BA691F00DDD81D /* FBObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBObject.m; path = Models/FBObject.m; sourceTree = "<group>"; };
+		529F67F915BA691F00DDD81D /* FBPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBPost.h; path = Models/FBPost.h; sourceTree = "<group>"; };
+		529F67FA15BA691F00DDD81D /* FBPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBPost.m; path = Models/FBPost.m; sourceTree = "<group>"; };
+		529F67FC15BA691F00DDD81D /* FBGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBGroup.h; path = Models/FBGroup.h; sourceTree = "<group>"; };
+		529F67FD15BA691F00DDD81D /* FBGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBGroup.m; path = Models/FBGroup.m; sourceTree = "<group>"; };
+		529F67FF15BA691F00DDD81D /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBUser.h; path = Models/FBUser.h; sourceTree = "<group>"; };
+		529F680015BA691F00DDD81D /* FBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBUser.m; path = Models/FBUser.m; sourceTree = "<group>"; };
 		52EB7BE215BA3E6800C7E339 /* DiscussionBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscussionBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB7BE615BA3E6800C7E339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52EB7BE815BA3E6800C7E339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +108,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		529F680215BA692700DDD81D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				529F67FF15BA691F00DDD81D /* FBUser.h */,
+				529F680015BA691F00DDD81D /* FBUser.m */,
+				529F67FC15BA691F00DDD81D /* FBGroup.h */,
+				529F67FD15BA691F00DDD81D /* FBGroup.m */,
+				529F67F915BA691F00DDD81D /* FBPost.h */,
+				529F67FA15BA691F00DDD81D /* FBPost.m */,
+				529F67F615BA691F00DDD81D /* FBObject.h */,
+				529F67F715BA691F00DDD81D /* FBObject.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		52EB7BD715BA3E6700C7E339 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +166,7 @@
 				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
 				5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */,
 				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
+				529F680215BA692700DDD81D /* Models */,
 			);
 			path = DiscussionBook;
 			sourceTree = "<group>";
@@ -246,7 +274,7 @@
 			attributes = {
 				CLASSPREFIX = DB;
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = Doximity;
+				ORGANIZATIONNAME = "Jacob Relkin";
 			};
 			buildConfigurationList = 52EB7BDC15BA3E6700C7E339 /* Build configuration list for PBXProject "DiscussionBook" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -328,6 +356,10 @@
 				52EB7BFC15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld in Sources */,
 				5526636D15BA589600D822D0 /* DBGroupListController.m in Sources */,
 				5526637015BA58B600D822D0 /* DBGroupTableViewCell.m in Sources */,
+				529F67F815BA691F00DDD81D /* FBObject.m in Sources */,
+				529F67FB15BA691F00DDD81D /* FBPost.m in Sources */,
+				529F67FE15BA691F00DDD81D /* FBGroup.m in Sources */,
+				529F680115BA691F00DDD81D /* FBUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
