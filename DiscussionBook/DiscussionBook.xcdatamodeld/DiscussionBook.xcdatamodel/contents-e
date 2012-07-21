@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1480" systemVersion="11E2620" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1803" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="FBGroup" representedClassName="FBGroup" parentEntity="FBObject" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="posts" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="FBPost" inverseName="group" inverseEntity="FBPost" syncable="YES"/>
@@ -10,16 +10,17 @@
     <entity name="FBPost" representedClassName="FBPost" parentEntity="FBObject" syncable="YES">
         <attribute name="createdDate" attributeType="Date" syncable="YES"/>
         <attribute name="message" attributeType="String" syncable="YES"/>
-        <relationship name="fromUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" syncable="YES"/>
+        <relationship name="fromUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" inverseName="relationship" inverseEntity="FBUser" syncable="YES"/>
         <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBGroup" inverseName="posts" inverseEntity="FBGroup" syncable="YES"/>
     </entity>
     <entity name="FBUser" representedClassName="FBUser" parentEntity="FBObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPost" inverseName="fromUser" inverseEntity="FBPost" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FBGroup" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="FBObject" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="FBPost" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="FBUser" positionX="0" positionY="0" width="0" height="60"/>
+        <element name="FBGroup" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="FBObject" positionX="142" positionY="-195" width="128" height="60"/>
+        <element name="FBPost" positionX="-144" positionY="-186" width="128" height="105"/>
+        <element name="FBUser" positionX="-261" positionY="0" width="128" height="75"/>
     </elements>
 </model>
