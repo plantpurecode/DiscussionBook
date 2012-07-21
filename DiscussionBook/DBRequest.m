@@ -147,7 +147,7 @@ static NSString * DBRequestMethods[] = {
         [self _createModelObjectWithDictionary:result];
     }
     
-    [self _invokeSuccessBlock];
+    [self _requestSucceeded];
 }
 
 #pragma mark Private
@@ -164,7 +164,7 @@ static NSString * DBRequestMethods[] = {
     [self didChangeValueForKey:key];
 }
 
-- (void)_invokeSuccessBlock {
+- (void)_requestSucceeded {
     [self _performKVCModificationWithKey:@"isFinished"
                                    block:^{
        void (^notificationBlock)(NSNotification *) = ^(NSNotification *note) {
@@ -181,11 +181,7 @@ static NSString * DBRequestMethods[] = {
        
        NSError *error = nil;
        [_context save:&error];
-       
-       if(_successBlock) {
-           dispatch_async(dispatch_get_main_queue(), _successBlock);
-       }
-                                       
+                                              
        _state = DBRequestStateFinished;
     }];
 }

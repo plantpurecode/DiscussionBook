@@ -27,7 +27,6 @@ typedef enum {
 @property (nonatomic, copy) NSString *responseObjectsKeyPath;
 @property (nonatomic, copy) NSDictionary *parameters;
 
-@property (nonatomic, copy) dispatch_block_t successBlock;
 @property (nonatomic, copy) void(^failureBlock)(NSError *error);
 
 - (void)execute;
