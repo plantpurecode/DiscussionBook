@@ -156,8 +156,9 @@
     if(!_rootViewController) {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[UINavigationBar class] toolbarClass:[UIToolbar class]];
         
+        NSManagedObjectContext *context = [self managedObjectContext];
         DBGroupListController *groupListController = [[DBGroupListController alloc] init];
-        [groupListController setManagedObjectContext:[self managedObjectContext]];
+        [groupListController setManagedObjectContext:context];
         [navigationController setViewControllers:@[groupListController]];
         
         _rootViewController = navigationController;

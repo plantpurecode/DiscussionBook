@@ -31,6 +31,12 @@
         DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
         [request setRoute:@"me/groups"];
         [request setResponseObjectsKeyPath:@"data"];
+        [request setFailureBlock:^(NSError *error) {
+            NSLog(@"failed with error: %@", error);
+        }];
+        [request setCompletionBlock:^{
+            NSLog(@"completed!");
+        }];
         [request execute];
     }
     return self;

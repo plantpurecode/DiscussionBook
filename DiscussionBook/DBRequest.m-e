@@ -103,13 +103,19 @@ static NSString * DBRequestMethods[] = {
     NSPersistentStoreCoordinator *psc = [[self appDelegate] persistentStoreCoordinator];
     [_context setPersistentStoreCoordinator:psc];
     
+    NSURL *url = [NSURL URLWithString:[self route] relativeToURL:[NSURL URLWithString:@"https://graph.facebook.com"]];
+    
     _request = [FBRequest new];
     _request.httpMethod = DBRequestMethods[[self method]];
-    _request.url        = [self route];
+    _request.url        = [url absoluteString];
     _request.params     = [[self parameters] mutableCopy];
     _request.delegate   = self;
     
-    [_request connect];    
+    [_request connect];
+    
+    while ([self isFinished] == NO) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
 }
 
 - (void)execute {
