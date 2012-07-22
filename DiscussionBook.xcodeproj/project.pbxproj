@@ -15,6 +15,7 @@
 		52B7B53715BB93E800F8A550 /* DBThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7B53615BB93E800F8A550 /* DBThreadTableViewCell.m */; };
 		52B7B53A15BB947100F8A550 /* DBThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */; };
 		52B7B53D15BB99B600F8A550 /* DBThreadListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7B53C15BB99B600F8A550 /* DBThreadListController.m */; };
+		52B7B55A15BC8D0F00F8A550 /* silhouette.gif in Resources */ = {isa = PBXBuildFile; fileRef = 52B7B55915BC8D0F00F8A550 /* silhouette.gif */; };
 		52EB7BE715BA3E6800C7E339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE615BA3E6800C7E339 /* UIKit.framework */; };
 		52EB7BE915BA3E6800C7E339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE815BA3E6800C7E339 /* Foundation.framework */; };
 		52EB7BEB15BA3E6800C7E339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BEA15BA3E6800C7E339 /* CoreGraphics.framework */; };
@@ -88,6 +89,7 @@
 		52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBThreadTableViewCell.xib; sourceTree = "<group>"; };
 		52B7B53B15BB99B600F8A550 /* DBThreadListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBThreadListController.h; sourceTree = "<group>"; };
 		52B7B53C15BB99B600F8A550 /* DBThreadListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBThreadListController.m; sourceTree = "<group>"; };
+		52B7B55915BC8D0F00F8A550 /* silhouette.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = silhouette.gif; sourceTree = "<group>"; };
 		52EB7BE215BA3E6800C7E339 /* DiscussionBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscussionBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB7BE615BA3E6800C7E339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52EB7BE815BA3E6800C7E339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -226,6 +228,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		52B7B55715BC8CAD00F8A550 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				52B7B55915BC8D0F00F8A550 /* silhouette.gif */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		52EB7BD715BA3E6700C7E339 = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +294,7 @@
 		52EB7BEF15BA3E6800C7E339 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				52B7B55715BC8CAD00F8A550 /* Images */,
 				52EB7C2915BA572A00C7E339 /* Vendor */,
 				52EB7BF015BA3E6800C7E339 /* DiscussionBook-Info.plist */,
 				52EB7BF115BA3E6800C7E339 /* InfoPlist.strings */,
@@ -436,6 +447,7 @@
 				5225812315BB568E0002A7F6 /* FBDialog.bundle in Resources */,
 				52B7B53A15BB947100F8A550 /* DBThreadTableViewCell.xib in Resources */,
 				555684F515BC66A500B53932 /* DBCommentTableViewCell.xib in Resources */,
+				52B7B55A15BC8D0F00F8A550 /* silhouette.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

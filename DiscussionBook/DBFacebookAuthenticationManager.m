@@ -67,16 +67,9 @@ static NSString *FBNSUserDefaultsExpirationDateKey = @"FBNSUserDefaultsExpiratio
     if ([self isAuthenticated]) {
         [self dialogCompleteWithUrl:nil];
     } else {
-        /*
-         client_id=YOUR_APP_ID
-         &redirect_uri=YOUR_REDIRECT_URL
-         &state=YOUR_STATE_VALUE
-         &scope=COMMA_SEPARATED_LIST_OF_PERMISSION_NAMES
-         */
-        
         NSDictionary *parameters = @{
-        @"client_id" : DBFBApplicationID,
-        @"scope" : @"user_groups"
+            @"client_id" : DBFBApplicationID,
+            @"scope" : @"user_groups"
         };
         
         [_facebookObject dialog:@"oauth"
