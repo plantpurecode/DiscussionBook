@@ -86,6 +86,8 @@ static NSString *FBNSUserDefaultsExpirationDateKey = @"FBNSUserDefaultsExpiratio
 }
 
 - (void)deauthenticate {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FBNSUserDefaultsAccessTokenKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:FBNSUserDefaultsExpirationDateKey];
     [NSUserDefaults resetStandardUserDefaults];
     [_facebookObject setAccessToken:nil];
     [_facebookObject setExpirationDate:nil];

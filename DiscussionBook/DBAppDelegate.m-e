@@ -12,7 +12,7 @@
 
 @interface DBAppDelegate () <UINavigationControllerDelegate, UIActionSheetDelegate>
 
-@property (nonatomic, strong) UIViewController *rootViewController;
+@property (nonatomic, strong) UINavigationController *rootViewController;
 
 @end
 
@@ -45,6 +45,7 @@
     [[DBFacebookAuthenticationManager sharedManager] authenticateWithBlock:^(BOOL success) {
         if (success) {
             [_groupListController requestUserGroups];
+            [self showLogoutButton];
         } else {
             int64_t delayInSeconds = 2.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
@@ -103,7 +104,7 @@
 
 #pragma mark - Private
 
-- (UIViewController *)rootViewController {
+- (UINavigationController *)rootViewController {
     if(!_rootViewController) {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[UINavigationBar class] toolbarClass:[UIToolbar class]];
         navigationController.delegate = self;
@@ -121,14 +122,29 @@
 
 #pragma mark - UINavigationControllerDelegate
 
+- (UIViewController *)primaryViewController {
+    return [[[self rootViewController] viewControllers] objectAtIndex:0];
+}
+
+- (void)showLoginButton {
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                          target:self
+                                                                          action:@selector(attemptToLogIn)];
+    self.primaryViewController.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)showLogoutButton {
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                          target:self
+                                                                          action:@selector(showOptionsActionSheet)];
+    self.primaryViewController.navigationItem.rightBarButtonItem = item;
+}
+
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if(viewController == navigationController.topViewController) {
-        if(viewController.navigationItem.leftBarButtonItem) return;
-        
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                                              target:self
-                                                                              action:@selector(showOptionsActionSheet)];
-        viewController.navigationItem.leftBarButtonItem = item;
+        if(viewController.navigationItem.rightBarButtonItem) return;
+        [self showLogoutButton];
     }
 }
 
@@ -149,7 +165,9 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
     if(buttonIndex == [actionSheet destructiveButtonIndex]) {
         [[DBFacebookAuthenticationManager sharedManager] deauthenticate];
-        //Present modal here...
+        [_groupListController removeUserGroups];
+        
+        [self showLoginButton];
     }
 }
 

@@ -4,6 +4,7 @@
         <relationship name="thread" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBGroupThread" inverseName="comments" inverseEntity="FBGroupThread" syncable="YES"/>
     </entity>
     <entity name="FBGroup" representedClassName="FBGroup" parentEntity="FBObject" syncable="YES">
+        <attribute name="iconURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="threads" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FBGroupThread" inverseName="group" inverseEntity="FBGroupThread" syncable="YES"/>
     </entity>
@@ -25,7 +26,7 @@
     </entity>
     <elements>
         <element name="FBComment" positionX="-74" positionY="243" width="128" height="60"/>
-        <element name="FBGroup" positionX="180" positionY="96" width="128" height="75"/>
+        <element name="FBGroup" positionX="180" positionY="96" width="128" height="90"/>
         <element name="FBGroupThread" positionX="108" positionY="252" width="128" height="75"/>
         <element name="FBObject" positionX="0" positionY="-90" width="128" height="60"/>
         <element name="FBPost" positionX="0" positionY="90" width="128" height="90"/>
