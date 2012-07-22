@@ -13,6 +13,9 @@
 
 @interface DBCommentTableViewCell : UITableViewCell
 
++ (CGFloat)commentWidthForCellWidth:(CGFloat)width;
++ (CGFloat)cellHeightForCommentHeight:(CGFloat)height;
+
 @property (nonatomic, strong) id representedObject;
 
 @property (weak) IBOutlet UIImageView *userImageView;

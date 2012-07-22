@@ -69,7 +69,7 @@ static NSString *FBNSUserDefaultsExpirationDateKey = @"FBNSUserDefaultsExpiratio
     } else {
         NSDictionary *parameters = @{
             @"client_id" : DBFBApplicationID,
-            @"scope" : @"user_groups"
+            @"scope" : @"user_groups,publish_stream"
         };
         
         [_facebookObject dialog:@"oauth"

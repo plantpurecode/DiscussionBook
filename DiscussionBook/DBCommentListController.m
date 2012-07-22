@@ -50,6 +50,7 @@
     [super viewDidLoad];
     
     [[self tableView] setDelegate:self];
+    [[self tableView] setRowHeight:COMMENT_EMPTY_HEIGHT];
     UINib *nib = [UINib nibWithNibName:@"DBCommentTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:[DBCommentTableViewCell reuseIdentifier]];
     
@@ -70,23 +71,28 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     FBPost *post = [_resultsController objectAtIndexPath:indexPath];
     
-#warning WHAT GOES HERE?
-    __block CGFloat h = COMMENT_EMPTY_HEIGHT;
-    if ([post hasComputedHeightForWidth:42]) {
-        h = [post computedHeightForWidth:42];
+    CGFloat width = [DBCommentTableViewCell commentWidthForCellWidth:[tableView bounds].size.width];
+    CGFloat h = COMMENT_EMPTY_HEIGHT;
+    if ([post hasComputedHeightForWidth:width]) {
+        h = [post computedHeightForWidth:width];
+        h = [DBCommentTableViewCell cellHeightForCommentHeight:h];
     }
     return h;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(DBCommentTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     FBPost *object = [_resultsController objectAtIndexPath:indexPath];
-    CGFloat width = 0;
+    CGFloat width = [DBCommentTableViewCell commentWidthForCellWidth:[tableView bounds].size.width];
     if ([object hasComputedHeightForWidth:width] == NO) {
-        [object requestComputedHeightForWidth:width inFont:nil handler:^(CGFloat height) {
+        [object requestComputedHeightForWidth:width inFont:COMMENT_FONT handler:^(CGFloat height) {
             NSIndexPath *path = [_resultsController indexPathForObject:object];
             [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
         }];
     }
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
 }
 
 #pragma mark - Private
