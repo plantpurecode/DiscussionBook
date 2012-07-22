@@ -16,4 +16,6 @@
 + (id)objectWithDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context;
 - (id)initWithDictionary:(NSDictionary *)dictionary inManagedObjectContext:(NSManagedObjectContext *)context;
 
+- (void)mergeDataFromDictionary:(NSDictionary *)dictionary;
+
 @end

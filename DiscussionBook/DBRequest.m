@@ -140,16 +140,18 @@ static NSString * DBRequestMethods[] = {
 }
 
 - (void)request:(FBRequest *)request didLoad:(id)result {
+    
+    id data = result;
     if(_responseObjectsKeyPath) {
-        result = [result valueForKeyPath:_responseObjectsKeyPath];
+        data = [data valueForKeyPath:_responseObjectsKeyPath];
     }
 
-    if([result isKindOfClass:[NSArray class]]) {
-        for(id obj in result) {
+    if([data isKindOfClass:[NSArray class]]) {
+        for(id obj in data) {
             [self _createModelObjectWithDictionary:obj];
         }
     } else {
-        [self _createModelObjectWithDictionary:result];
+        [self _createModelObjectWithDictionary:data];
     }
     
     [self _requestSucceeded];

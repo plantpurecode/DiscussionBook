@@ -98,12 +98,15 @@ static const char FBObjectClassPropertiesKey;
     
     NSError *error = nil;
     NSArray *results = [context executeFetchRequest:fr error:&error];
+    
+    FBObject *object = nil;
     if ([results count] > 0) {
-        return [results objectAtIndex:0];
+        object = [results objectAtIndex:0];
+        [object mergeDataFromDictionary:dictionary];
     } else {
-        FBObject *object = [[self alloc] initWithDictionary:dictionary inManagedObjectContext:context];
-        return object;
+        object = [[self alloc] initWithDictionary:dictionary inManagedObjectContext:context];
     }
+    return object;
     
 }
 
@@ -113,9 +116,13 @@ static const char FBObjectClassPropertiesKey;
     
     self = [[[self class] alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
     if(self) {
-        [self mapPropertiesWithDictionary:dictionary];
+        [self mergeDataFromDictionary:dictionary];
     }
     return self;
+}
+
+- (void)mergeDataFromDictionary:(NSDictionary *)dictionary {
+    [self mapPropertiesWithDictionary:dictionary];
 }
 
 #pragma mark Private

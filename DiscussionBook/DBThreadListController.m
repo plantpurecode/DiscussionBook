@@ -38,7 +38,7 @@
         [_resultsController setCellReuseIdentifier:[DBThreadTableViewCell reuseIdentifier]];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBGroupThread"];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"group = %@", group];
-        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedDate" ascending:YES]]];
+        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedDate" ascending:NO]]];
         [_resultsController setFetchRequest:fetchRequest];
         [_resultsController setFetchContext:[group managedObjectContext]];
 

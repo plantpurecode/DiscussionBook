@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#define COMMENT_EMPTY_HEIGHT 86.0
+
 @interface DBCommentTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) id representedObject;
+
+@property (weak) IBOutlet UIImageView *userImageView;
+@property (weak) IBOutlet UIActivityIndicatorView *userImageActivityIndicator;
+@property (weak) IBOutlet UILabel *userName;
+
+@property (weak) IBOutlet UILabel *likesLabel;
+@property (weak) IBOutlet UILabel *dateLabel;
+@property (weak) IBOutlet UILabel *messageLabel;
 
 @end

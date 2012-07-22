@@ -42,7 +42,7 @@
 							<object class="IBUILabel" id="706836971">
 								<reference key="NSNextResponder" ref="818675423"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{17, 0}, {225, 24}}</string>
+								<string key="NSFrame">{{17, 0}, {233, 24}}</string>
 								<reference key="NSSuperview" ref="818675423"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1032341280"/>
@@ -57,7 +57,7 @@
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">LONGLONGLONGLONGLON</string>
 								<object class="NSColor" key="IBUITextColor" id="48430357">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -77,7 +77,7 @@
 							<object class="IBUILabel" id="1032341280">
 								<reference key="NSNextResponder" ref="818675423"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{258, 0}, {53, 24}}</string>
+								<string key="NSFrame">{{253, 1}, {58, 24}}</string>
 								<reference key="NSSuperview" ref="818675423"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="909464857"/>
@@ -140,6 +140,7 @@
 								<string key="NSFrame">{{292, 35}, {19, 21}}</string>
 								<reference key="NSSuperview" ref="818675423"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -249,9 +250,9 @@
 						<reference key="object" ref="749050329"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="706836971"/>
-							<reference ref="1032341280"/>
 							<reference ref="909464857"/>
 							<reference ref="373013600"/>
+							<reference ref="1032341280"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

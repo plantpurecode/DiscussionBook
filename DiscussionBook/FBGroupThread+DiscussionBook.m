@@ -27,16 +27,10 @@
 }
 
 - (DBRequest *)requestComments:(void(^)(NSArray *comments))handler {
-    NSString *route = [NSString stringWithFormat:@"%@", [self identifier]];
+    NSString *route = [NSString stringWithFormat:@"%@/comments", [self identifier]];
     
-    DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBComment class]];
+    DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroupThread class]];
     [request setRoute:route];
-    
-    NSManagedObjectID *groupID = [self objectID];
-    [request setInitializationCallback:^(FBObject *object){
-        id thread = [[object managedObjectContext] objectWithID:groupID];
-        [object setValue:thread forKey:@"thread"];
-    }];
     if (handler) {
         [request setCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{

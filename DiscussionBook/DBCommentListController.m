@@ -35,7 +35,8 @@
         _resultsController = [[DBFetchedResultsController alloc] init];
         [_resultsController setCellReuseIdentifier:[DBCommentTableViewCell reuseIdentifier]];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBPost"];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@ OR (entityName = 'FBComment' AND thread = %@)", [thread identifier], _thread];
+        NSEntityDescription *comment = [NSEntityDescription entityForName:@"FBComment" inManagedObjectContext:[thread managedObjectContext]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier = %@ OR (entity = %@ AND thread = %@)", [thread identifier], comment, _thread];
         fetchRequest.predicate = predicate;
         [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]]];
         [_resultsController setFetchRequest:fetchRequest];
@@ -62,13 +63,15 @@
     [self.view addSubview:indicator];
     [indicator startAnimating];
     _indicatorView = indicator;
+    
+    [self fetchComments];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     FBPost *post = [_resultsController objectAtIndexPath:indexPath];
     
 #warning WHAT GOES HERE?
-    __block CGFloat h = 44;
+    __block CGFloat h = COMMENT_EMPTY_HEIGHT;
     if ([post hasComputedHeightForWidth:42]) {
         h = [post computedHeightForWidth:42];
     }

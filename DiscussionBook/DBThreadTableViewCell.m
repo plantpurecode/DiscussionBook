@@ -77,7 +77,8 @@ UIKIT_STATIC_INLINE BOOL dateIsToday(NSDate *date) {
     [_commentCountLabel setHidden:count == 0];
     
     if(count) {
-        [_commentCountLabel setText:[NSString stringWithFormat:@"%d", count]];
+        NSString *number = [NSNumberFormatter localizedStringFromNumber:@(count) numberStyle:NSNumberFormatterDecimalStyle];
+        [_commentCountLabel setText:number];
         [_commentCountLabel setPadding:UIEdgeInsetsMake(1, 3, 1, 3)];
         [_commentCountLabel setBackgroundColor:[UIColor grayColor]];
         [_commentCountLabel setTextColor:[UIColor whiteColor]];
