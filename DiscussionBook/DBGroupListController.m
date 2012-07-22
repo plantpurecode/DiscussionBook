@@ -13,6 +13,12 @@
 #import "FBGroup+DiscussionBook.h"
 #import "DBRequest.h"
 
+@interface DBGroupListController ()
+
+@property (nonatomic, weak) UIActivityIndicatorView *indicatorView;
+
+@end
+
 @implementation DBGroupListController {
     DBFetchedResultsController *resultsController;
     DBRequest *_groupsRequest;
@@ -38,6 +44,10 @@
 
     _groupsRequest = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
     [_groupsRequest setRoute:@"me/groups"];
+    [_groupsRequest setCompletionBlock:^{
+        [_indicatorView stopAnimating];
+        [_indicatorView removeFromSuperview];
+    }];
     [_groupsRequest execute];
 }
 
@@ -48,6 +58,19 @@
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     _managedObjectContext = managedObjectContext;
     [resultsController setFetchContext:_managedObjectContext];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    indicator.center = self.view.center;
+    indicator.bounds = (CGRect){CGPointZero, {50, 50}};
+    
+    [self.view addSubview:indicator];
+    [indicator startAnimating];
+    _indicatorView = indicator;
 }
 
 - (void)viewDidLoad {

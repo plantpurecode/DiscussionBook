@@ -12,7 +12,6 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
-			<string>IBUIActivityIndicatorView</string>
 			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUITableViewCell</string>
@@ -47,7 +46,7 @@
 								<string key="NSFrame">{{10, 6}, {44, 44}}</string>
 								<reference key="NSSuperview" ref="357819171"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="964738183"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -151,19 +150,6 @@
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<int key="IBUIAutoshrinkMode">0</int>
 							</object>
-							<object class="IBUIActivityIndicatorView" id="964738183">
-								<reference key="NSNextResponder" ref="357819171"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{22, 16}, {20, 20}}</string>
-								<reference key="NSSuperview" ref="357819171"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="985013995"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<bool key="IBUIHidesWhenStopped">NO</bool>
-								<int key="IBUIStyle">2</int>
-							</object>
 							<object class="IBUILabel" id="985013995">
 								<reference key="NSNextResponder" ref="357819171"/>
 								<int key="NSvFlags">292</int>
@@ -249,14 +235,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">userImageActivityIndicator</string>
-						<reference key="source" ref="109440328"/>
-						<reference key="destination" ref="964738183"/>
-					</object>
-					<int key="connectionID">29</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">userImageView</string>
 						<reference key="source" ref="109440328"/>
 						<reference key="destination" ref="402332726"/>
@@ -297,7 +275,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="985013995"/>
 							<reference ref="402332726"/>
-							<reference ref="964738183"/>
 							<reference ref="991245823"/>
 							<reference ref="643729073"/>
 							<reference ref="116248816"/>
@@ -327,11 +304,6 @@
 						<reference key="parent" ref="109440328"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="964738183"/>
-						<reference key="parent" ref="109440328"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
 						<reference key="object" ref="985013995"/>
 						<reference key="parent" ref="109440328"/>
@@ -347,7 +319,6 @@
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="24.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>

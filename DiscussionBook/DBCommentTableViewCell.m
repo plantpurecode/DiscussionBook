@@ -56,7 +56,6 @@ static NSDateFormatter *CommentTimeFormatter() {
 
 - (void)setRepresentedObject:(id)object {
     _representedObject = object;
-    [_userImageActivityIndicator setHidden:YES];
     
     FBUser *user = [_representedObject fromUser];
     [_userName setText:[user name]];

@@ -19,7 +19,6 @@
 @property (nonatomic, strong) id representedObject;
 
 @property (weak) IBOutlet UIImageView *userImageView;
-@property (weak) IBOutlet UIActivityIndicatorView *userImageActivityIndicator;
 @property (weak) IBOutlet UILabel *userName;
 
 @property (weak) IBOutlet UILabel *likesLabel;
