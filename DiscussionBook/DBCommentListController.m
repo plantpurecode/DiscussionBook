@@ -13,6 +13,7 @@
 #import "DBCommentTableViewCell.h"
 #import "UITableViewCell+DiscussionBook.h"
 #import "DBRequest.h"
+#import "DBCreatePostViewController.h"
 
 @interface DBCommentListController ()
 
@@ -48,11 +49,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTitle:@"Comments"];
     
     [[self tableView] setDelegate:self];
     [[self tableView] setRowHeight:COMMENT_EMPTY_HEIGHT];
     UINib *nib = [UINib nibWithNibName:@"DBCommentTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:[DBCommentTableViewCell reuseIdentifier]];
+    
+    UIBarButtonItem *createBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                     target:self
+                                                                                     action:@selector(composeComment)];
+    self.navigationItem.rightBarButtonItem = createBarButton;
     
     [_resultsController setTableView:[self tableView]];
 }
@@ -67,6 +74,17 @@
     
     [self fetchComments];
 }
+
+- (void)composeComment {
+    NSString *route = [NSString stringWithFormat:@"%@/comments", _thread.identifier];
+    DBCreatePostViewController *cpvc = [[DBCreatePostViewController alloc] initWithPostType:DBPostTypeComment
+                                                                             andStreamRoute:route];
+    
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:cpvc];
+    [self presentModalViewController:controller animated:YES];    
+}
+
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     FBPost *post = [_resultsController objectAtIndexPath:indexPath];
