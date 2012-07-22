@@ -14,7 +14,7 @@
 
 + (NSDictionary *)propertyMapping {
     return @{
-        @"created_time" : @"createdDate",
+        @"created_time" : @"creationDate",
         @"message" : @"message"
     };
 }

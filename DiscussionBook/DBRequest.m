@@ -194,7 +194,10 @@ static NSString * DBRequestMethods[] = {
                     format:@"Response object type must be a NSManagedObject"];
     }
     
-    (void)[[cls alloc] initWithDictionary:dictionary inManagedObjectContext:_context];
+    FBObject *object = [cls objectWithDictionary:dictionary inContext:_context];
+    if (_initializationCallback) {
+        _initializationCallback(object);
+    }
 }
 
 @end

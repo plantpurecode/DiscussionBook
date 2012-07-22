@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FBObject.h"
 #import "FBRequest.h"
 
 typedef enum {
@@ -17,6 +18,8 @@ typedef enum {
     DBRequestMethodHEAD
 } DBRequestMethod;
 
+typedef void (^DBInitializationCallback)(FBObject *);
+
 @interface DBRequest : NSOperation
 
 - (id)initWithResponseObjectType:(Class)responseObjectType;
@@ -26,6 +29,7 @@ typedef enum {
 @property (nonatomic) DBRequestMethod method; // default is "GET"
 @property (nonatomic, copy) NSString *responseObjectsKeyPath; // default is "data"
 @property (nonatomic, copy) NSDictionary *parameters;
+@property (nonatomic, copy) DBInitializationCallback initializationCallback;
 
 @property (nonatomic, copy) void(^failureBlock)(NSError *error);
 

@@ -22,6 +22,12 @@
     
     DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroupThread class]];
     [request setRoute:route];
+    
+    NSManagedObjectID *groupID = [self objectID];
+    [request setInitializationCallback:^(FBObject *object){
+        id group = [[object managedObjectContext] objectWithID:groupID];
+        [object setValue:group forKey:@"group"];
+    }];
     if (handler) {
         [request setCompletionBlock:^{
             dispatch_async(dispatch_get_main_queue(), ^{
