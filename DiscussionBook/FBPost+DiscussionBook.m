@@ -15,6 +15,7 @@
 + (NSDictionary *)propertyMapping {
     return @{
         @"created_time" : @"creationDate",
+        @"updated_time" : @"updatedDate",
         @"message" : @"message"
     };
 }

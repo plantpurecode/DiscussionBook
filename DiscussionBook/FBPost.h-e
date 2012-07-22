@@ -15,6 +15,7 @@
 @interface FBPost : FBObject
 
 @property (nonatomic, retain) NSDate * creationDate;
+@property (nonatomic, retain) NSDate * updatedDate;
 @property (nonatomic, retain) NSString * message;
 @property (nonatomic, retain) FBUser *fromUser;
 
