@@ -10,4 +10,6 @@
 
 @interface FBUser (DiscussionBook)
 
+- (void)requestUserImage:(void(^)(UIImage *))handler;
+
 @end

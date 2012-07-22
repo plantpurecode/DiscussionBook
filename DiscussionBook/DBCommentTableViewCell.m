@@ -54,13 +54,25 @@ static NSDateFormatter *CommentTimeFormatter() {
     return height + paddingFromTopToName + heightOfName + paddingFromNameToMessage + paddingFromMessageToDate + heightOfDate + paddingFromDateToBottom;
 }
 
-- (void)setHighlighted:(BOOL)highlighted {}
+- (void)setHighlighted:(BOOL)highlighted {
+
+}
+
+- (void)prepareForReuse {
+    [_userImageView setImage:[UIImage imageNamed:@"silhouette.gif"]];
+}
 
 - (void)setRepresentedObject:(id)object {
     _representedObject = object;
     
     FBUser *user = [_representedObject fromUser];
     [_userName setText:[user name]];
+    [user requestUserImage:^(UIImage *image) {
+        // if we're still showing the same thing...
+        if ([self representedObject] == object) {
+            [_userImageView setImage:image];
+        }
+    }];
     
     NSNumber *likes = [_representedObject likes];
     if ([likes integerValue] > 0) {

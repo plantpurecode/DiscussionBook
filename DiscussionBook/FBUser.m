@@ -13,6 +13,7 @@
 @implementation FBUser
 
 @dynamic name;
+@dynamic iconURL;
 @dynamic posts;
 
 @end

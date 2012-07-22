@@ -29,6 +29,7 @@
         <relationship name="post" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBPost" inverseName="renderings" inverseEntity="FBPost" syncable="YES"/>
     </entity>
     <entity name="FBUser" representedClassName="FBUser" parentEntity="FBObject" syncable="YES">
+        <attribute name="iconURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPost" inverseName="fromUser" inverseEntity="FBPost" syncable="YES"/>
     </entity>
@@ -37,8 +38,8 @@
         <element name="FBGroup" positionX="180" positionY="96" width="128" height="75"/>
         <element name="FBGroupThread" positionX="108" positionY="252" width="128" height="75"/>
         <element name="FBObject" positionX="0" positionY="-90" width="128" height="60"/>
-        <element name="FBPost" positionX="0" positionY="90" width="128" height="135"/>
-        <element name="FBUser" positionX="-200" positionY="72" width="128" height="75"/>
+        <element name="FBPost" positionX="0" positionY="90" width="128" height="105"/>
+        <element name="FBUser" positionX="-200" positionY="72" width="128" height="90"/>
         <element name="FBPostRendering" positionX="-369" positionY="252" width="128" height="90"/>
     </elements>
 </model>

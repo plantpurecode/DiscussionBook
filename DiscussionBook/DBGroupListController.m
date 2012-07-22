@@ -62,6 +62,14 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)viewDidLoad {
+    [[self tableView] setDelegate:self];
+    UINib *nib = [UINib nibWithNibName:@"DBGroupTableViewCell" bundle:nil];
+    [[self tableView] registerNib:nib forCellReuseIdentifier:[DBGroupTableViewCell reuseIdentifier]];
+    
+    [resultsController setTableView:[self tableView]];
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
@@ -71,14 +79,6 @@
     [self.view addSubview:indicator];
     [indicator startAnimating];
     _indicatorView = indicator;
-}
-
-- (void)viewDidLoad {
-    [[self tableView] setDelegate:self];
-    UINib *nib = [UINib nibWithNibName:@"DBGroupTableViewCell" bundle:nil];
-    [[self tableView] registerNib:nib forCellReuseIdentifier:[DBGroupTableViewCell reuseIdentifier]];
-    
-    [resultsController setTableView:[self tableView]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

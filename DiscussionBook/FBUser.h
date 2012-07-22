@@ -15,6 +15,7 @@
 @interface FBUser : FBObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * iconURL;
 @property (nonatomic, retain) NSSet *posts;
 @end
 
