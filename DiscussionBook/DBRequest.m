@@ -100,28 +100,30 @@ static NSString * DBRequestMethods[] = {
 }
 
 - (void)main {
-    _context = [[NSManagedObjectContext alloc] init];
-
-    NSPersistentStoreCoordinator *psc = [[self appDelegate] persistentStoreCoordinator];
-    [_context setPersistentStoreCoordinator:psc];
-    
-    NSURL *url = [NSURL URLWithString:[self route] relativeToURL:[NSURL URLWithString:@"https://graph.facebook.com"]];
-    
-    DBFacebookAuthenticationManager *manager = [DBFacebookAuthenticationManager sharedManager];
-    NSMutableDictionary *params = [NSMutableDictionary new];
-    [params addEntriesFromDictionary:[self parameters]];
-    [params setObject:[manager accessToken] forKey:@"access_token"];
-    
-    _request = [FBRequest new];
-    _request.httpMethod = DBRequestMethods[[self method]];
-    _request.url        = [url absoluteString];
-    _request.params     = params;
-    _request.delegate   = self;
-    
-    [_request connect];
-    
-    while ([self isFinished] == NO) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    @autoreleasepool {
+        _context = [[NSManagedObjectContext alloc] init];
+        
+        NSPersistentStoreCoordinator *psc = [[self appDelegate] persistentStoreCoordinator];
+        [_context setPersistentStoreCoordinator:psc];
+        
+        NSURL *url = [NSURL URLWithString:[self route] relativeToURL:[NSURL URLWithString:@"https://graph.facebook.com"]];
+        
+        DBFacebookAuthenticationManager *manager = [DBFacebookAuthenticationManager sharedManager];
+        NSMutableDictionary *params = [NSMutableDictionary new];
+        [params addEntriesFromDictionary:[self parameters]];
+        [params setObject:[manager accessToken] forKey:@"access_token"];
+        
+        _request = [FBRequest new];
+        _request.httpMethod = DBRequestMethods[[self method]];
+        _request.url        = [url absoluteString];
+        _request.params     = params;
+        _request.delegate   = self;
+        
+        [_request connect];
+        
+        while ([self isFinished] == NO) {
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        }        
     }
 }
 

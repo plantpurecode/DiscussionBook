@@ -9,13 +9,13 @@
 #import "DBGroupListController.h"
 #import "DBGroupTableViewCell.h"
 #import "DBFetchedResultsController.h"
+#import "DBThreadListController.h"
 #import "FBGroup+DiscussionBook.h"
 #import "DBRequest.h"
 
 @implementation DBGroupListController {
     DBFetchedResultsController *resultsController;
     DBRequest *_groupsRequest;
-    DBRequest *_threadsRequest;
 }
 
 - (id)init {
@@ -55,12 +55,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_threadsRequest cancel];
-    
     FBGroup *group = [resultsController objectAtIndexPath:indexPath];
-    _threadsRequest = [group requestThreads:^(NSArray *threads) {
-        NSLog(@"threads: %@", threads);
-    }];
+    DBThreadListController *threadController = [[DBThreadListController alloc] initWithGroup:group];
+    [self.navigationController pushViewController:threadController animated:YES];
 }
 
 @end

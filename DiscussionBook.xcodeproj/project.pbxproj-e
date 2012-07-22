@@ -12,6 +12,9 @@
 		5225812315BB568E0002A7F6 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5225811615BB568E0002A7F6 /* FBDialog.bundle */; };
 		5225812415BB568E0002A7F6 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5225811C15BB568E0002A7F6 /* libfacebook_ios_sdk.a */; };
 		5225812715BB61C30002A7F6 /* DBFacebookAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5225812615BB61C20002A7F6 /* DBFacebookAuthenticationManager.m */; };
+		52B7B53715BB93E800F8A550 /* DBThreadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7B53615BB93E800F8A550 /* DBThreadTableViewCell.m */; };
+		52B7B53A15BB947100F8A550 /* DBThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */; };
+		52B7B53D15BB99B600F8A550 /* DBThreadListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7B53C15BB99B600F8A550 /* DBThreadListController.m */; };
 		52EB7BE715BA3E6800C7E339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE615BA3E6800C7E339 /* UIKit.framework */; };
 		52EB7BE915BA3E6800C7E339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE815BA3E6800C7E339 /* Foundation.framework */; };
 		52EB7BEB15BA3E6800C7E339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BEA15BA3E6800C7E339 /* CoreGraphics.framework */; };
@@ -76,6 +79,11 @@
 		5225812215BB568E0002A7F6 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		5225812515BB61C20002A7F6 /* DBFacebookAuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFacebookAuthenticationManager.h; sourceTree = "<group>"; };
 		5225812615BB61C20002A7F6 /* DBFacebookAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFacebookAuthenticationManager.m; sourceTree = "<group>"; };
+		52B7B53515BB93E800F8A550 /* DBThreadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBThreadTableViewCell.h; sourceTree = "<group>"; };
+		52B7B53615BB93E800F8A550 /* DBThreadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBThreadTableViewCell.m; sourceTree = "<group>"; };
+		52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBThreadTableViewCell.xib; sourceTree = "<group>"; };
+		52B7B53B15BB99B600F8A550 /* DBThreadListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBThreadListController.h; sourceTree = "<group>"; };
+		52B7B53C15BB99B600F8A550 /* DBThreadListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBThreadListController.m; sourceTree = "<group>"; };
 		52EB7BE215BA3E6800C7E339 /* DiscussionBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscussionBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB7BE615BA3E6800C7E339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52EB7BE815BA3E6800C7E339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -249,6 +257,11 @@
 				5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */,
 				5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */,
 				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
+				52B7B53515BB93E800F8A550 /* DBThreadTableViewCell.h */,
+				52B7B53615BB93E800F8A550 /* DBThreadTableViewCell.m */,
+				52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */,
+				52B7B53B15BB99B600F8A550 /* DBThreadListController.h */,
+				52B7B53C15BB99B600F8A550 /* DBThreadListController.m */,
 				55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */,
 				55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */,
 				5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */,
@@ -379,6 +392,7 @@
 				52EB7BF315BA3E6800C7E339 /* InfoPlist.strings in Resources */,
 				5526637215BA5BD400D822D0 /* DBGroupTableViewCell.xib in Resources */,
 				5225812315BB568E0002A7F6 /* FBDialog.bundle in Resources */,
+				52B7B53A15BB947100F8A550 /* DBThreadTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +448,8 @@
 				555684CF15BB7DD000B53932 /* FBPost+DiscussionBook.m in Sources */,
 				555684D215BB7E4100B53932 /* FBUser+DiscussionBook.m in Sources */,
 				555684D515BB7F2600B53932 /* FBGroupThread+DiscussionBook.m in Sources */,
+				52B7B53715BB93E800F8A550 /* DBThreadTableViewCell.m in Sources */,
+				52B7B53D15BB99B600F8A550 /* DBThreadListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
