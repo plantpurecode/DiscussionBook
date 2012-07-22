@@ -58,35 +58,22 @@ static NSString *FBUserCachePathForUserIcon(NSString *identifier) {
 - (void)requestUserImage:(void(^)(UIImage *))handler {
     NSString *identifier = [self identifier];
     
-    dispatch_block_t loadCachedIconOrFetch = ^{
-        NSString *iconURL = [self iconURL];
-        UIImage *icon = [FBUser cachedImageForUserWithIdentifier:identifier];;
-        // try to load it from cache
-        if (icon == nil) {
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                NSData *d = [NSData dataWithContentsOfURL:[NSURL URLWithString:iconURL]];
-                UIImage *image = [[UIImage alloc] initWithData:d];
-                // cache the image
-                [FBUser cacheImage:image forUserWithIdentifier:identifier];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    handler(image);
-                });
-            });
-        } else {
-            handler(icon);
-        }
-    };
+    UIImage *icon = [FBUser cachedImageForUserWithIdentifier:identifier];
     
-    if ([self iconURL] == nil) {
-        DBRequest *userInfo = [[DBRequest alloc] initWithResponseObjectType:[FBUser class]];
-        [userInfo setRoute:[self identifier]];
-        [userInfo setResponseObjectsKeyPath:nil];
-        [userInfo setParameters:@{ @"fields" : @"picture,id,name" }];
-        [userInfo setCompletionBlock:loadCachedIconOrFetch];
-        [userInfo execute];
+    if (icon == nil) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSString *iconURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", identifier];
+            NSData *d = [NSData dataWithContentsOfURL:[NSURL URLWithString:iconURL]];
+            UIImage *image = [[UIImage alloc] initWithData:d];
+            // cache the image
+            [FBUser cacheImage:image forUserWithIdentifier:identifier];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                handler(image);
+            });
+        });
     } else {
-        loadCachedIconOrFetch();
+        handler(icon);
     }
 }
 
