@@ -39,8 +39,9 @@
         [resultsController setCellReuseIdentifier:[DBThreadTableViewCell reuseIdentifier]];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBGroupThread"];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"group = %@", group];
-//        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedDate" ascending:YES]]];
         [resultsController setFetchRequest:fetchRequest];
+        [resultsController setFetchContext:[group managedObjectContext]];
 
     }
     return self;
@@ -65,6 +66,7 @@
 {
     [super viewDidLoad];
     [[self tableView] setDelegate:self];
+    [[self tableView] setRowHeight:74.0];
     UINib *nib = [UINib nibWithNibName:@"DBThreadTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:[DBThreadTableViewCell reuseIdentifier]];
     

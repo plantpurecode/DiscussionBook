@@ -13,6 +13,7 @@
 @implementation FBPost
 
 @dynamic creationDate;
+@dynamic updatedDate;
 @dynamic message;
 @dynamic fromUser;
 

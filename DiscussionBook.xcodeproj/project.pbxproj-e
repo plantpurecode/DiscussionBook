@@ -44,6 +44,7 @@
 		555684CF15BB7DD000B53932 /* FBPost+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684CE15BB7DD000B53932 /* FBPost+DiscussionBook.m */; };
 		555684D215BB7E4100B53932 /* FBUser+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684D115BB7E4100B53932 /* FBUser+DiscussionBook.m */; };
 		555684D515BB7F2600B53932 /* FBGroupThread+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684D415BB7F2600B53932 /* FBGroupThread+DiscussionBook.m */; };
+		555684E315BBA6AE00B53932 /* DBPaddedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684E215BBA6AE00B53932 /* DBPaddedLabel.m */; };
 		55F2F92115BB24DE0032F6E8 /* DBFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +132,8 @@
 		555684D115BB7E4100B53932 /* FBUser+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBUser+DiscussionBook.m"; sourceTree = "<group>"; };
 		555684D315BB7F2600B53932 /* FBGroupThread+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBGroupThread+DiscussionBook.h"; sourceTree = "<group>"; };
 		555684D415BB7F2600B53932 /* FBGroupThread+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBGroupThread+DiscussionBook.m"; sourceTree = "<group>"; };
+		555684E115BBA6AE00B53932 /* DBPaddedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPaddedLabel.h; sourceTree = "<group>"; };
+		555684E215BBA6AE00B53932 /* DBPaddedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPaddedLabel.m; sourceTree = "<group>"; };
 		55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFetchedResultsController.h; sourceTree = "<group>"; };
 		55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFetchedResultsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,22 +254,14 @@
 			children = (
 				52EB7BF715BA3E6800C7E339 /* DBAppDelegate.h */,
 				52EB7BF815BA3E6800C7E339 /* DBAppDelegate.m */,
-				5526636B15BA589600D822D0 /* DBGroupListController.h */,
-				5526636C15BA589600D822D0 /* DBGroupListController.m */,
-				5526638E15BB240700D822D0 /* UITableViewCell+DiscussionBook.h */,
-				5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */,
-				5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */,
-				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
-				52B7B53515BB93E800F8A550 /* DBThreadTableViewCell.h */,
-				52B7B53615BB93E800F8A550 /* DBThreadTableViewCell.m */,
-				52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */,
-				52B7B53B15BB99B600F8A550 /* DBThreadListController.h */,
-				52B7B53C15BB99B600F8A550 /* DBThreadListController.m */,
+				555684E015BBA5E400B53932 /* Group View */,
+				555684DF15BBA5DC00B53932 /* Thread View */,
 				55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */,
 				55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */,
-				5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */,
 				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
 				529F680215BA692700DDD81D /* Models */,
+				5526638E15BB240700D822D0 /* UITableViewCell+DiscussionBook.h */,
+				5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */,
 				522580D515BB2CE60002A7F6 /* NSArray+DiscussionBook.h */,
 				522580D615BB2CE60002A7F6 /* NSArray+DiscussionBook.m */,
 				522580DE15BB35000002A7F6 /* DBRequest.h */,
@@ -316,6 +311,32 @@
 			);
 			path = Vendor;
 			sourceTree = SOURCE_ROOT;
+		};
+		555684DF15BBA5DC00B53932 /* Thread View */ = {
+			isa = PBXGroup;
+			children = (
+				52B7B53B15BB99B600F8A550 /* DBThreadListController.h */,
+				52B7B53C15BB99B600F8A550 /* DBThreadListController.m */,
+				52B7B53515BB93E800F8A550 /* DBThreadTableViewCell.h */,
+				52B7B53615BB93E800F8A550 /* DBThreadTableViewCell.m */,
+				52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */,
+				555684E115BBA6AE00B53932 /* DBPaddedLabel.h */,
+				555684E215BBA6AE00B53932 /* DBPaddedLabel.m */,
+			);
+			name = "Thread View";
+			sourceTree = "<group>";
+		};
+		555684E015BBA5E400B53932 /* Group View */ = {
+			isa = PBXGroup;
+			children = (
+				5526636B15BA589600D822D0 /* DBGroupListController.h */,
+				5526636C15BA589600D822D0 /* DBGroupListController.m */,
+				5526636E15BA58B600D822D0 /* DBGroupTableViewCell.h */,
+				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
+				5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */,
+			);
+			name = "Group View";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -450,6 +471,7 @@
 				555684D515BB7F2600B53932 /* FBGroupThread+DiscussionBook.m in Sources */,
 				52B7B53715BB93E800F8A550 /* DBThreadTableViewCell.m in Sources */,
 				52B7B53D15BB99B600F8A550 /* DBThreadListController.m in Sources */,
+				555684E315BBA6AE00B53932 /* DBPaddedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
