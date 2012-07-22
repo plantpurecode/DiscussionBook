@@ -21,10 +21,10 @@ UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
 }
 
 typedef enum {
-    DBRequestStateReady,
+    DBRequestStateReady = 0,
     DBRequestStateStarted,
-    DBRequestStateFinished,
     DBRequestStateCancelled,
+    DBRequestStateFinished,
 } DBRequestState;
 
 static NSString * DBRequestMethods[] = {
@@ -131,11 +131,7 @@ static NSString * DBRequestMethods[] = {
 
 #pragma mark - FBRequestDelegate
 
-- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-    [self _performKVCModificationWithKey:@"isFinished" block:^{
-        _state = DBRequestStateFinished;
-    }];
-    
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {    
     if(_failureBlock) {
         _failureBlock(error);
     }
@@ -172,27 +168,23 @@ static NSString * DBRequestMethods[] = {
 }
 
 - (void)_requestSucceeded {
-    [self _performKVCModificationWithKey:@"isFinished"
-                                   block:^{
-       void (^notificationBlock)(NSNotification *) = ^(NSNotification *note) {
-           _mergeNotificationObserver = nil;
-           
-           NSManagedObjectContext *mainContext = [[self appDelegate] managedObjectContext];
-           [mainContext mergeChangesFromContextDidSaveNotification:note];
-       };
-       
-       _mergeNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
-                                                                                      object:nil
-                                                                                       queue:[NSOperationQueue mainQueue]
-                                                                                  usingBlock:notificationBlock];
-       
-       NSError *error = nil;
-       if (![_context save:&error]) {
-           NSLog(@"error saving: %@", error);
-       }
-                                              
-       _state = DBRequestStateFinished;
-    }];
+    void (^notificationBlock)(NSNotification *) = ^(NSNotification *note) {
+        _mergeNotificationObserver = nil;
+        
+        NSManagedObjectContext *mainContext = [[self appDelegate] managedObjectContext];
+        [mainContext mergeChangesFromContextDidSaveNotification:note];
+        
+        _state = DBRequestStateFinished;
+    };
+    
+    _mergeNotificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextDidSaveNotification
+                                                                                   object:nil
+                                                                                    queue:[NSOperationQueue mainQueue]
+                                                                               usingBlock:notificationBlock];
+    NSError *error = nil;
+    if (![_context save:&error]) {
+        NSLog(@"error saving: %@", error);
+    }
 }
 
 - (void)_createModelObjectWithDictionary:(NSDictionary *)dictionary {
