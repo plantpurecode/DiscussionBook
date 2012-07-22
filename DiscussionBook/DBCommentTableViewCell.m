@@ -54,6 +54,8 @@ static NSDateFormatter *CommentTimeFormatter() {
     return height + paddingFromTopToName + heightOfName + paddingFromNameToMessage + paddingFromMessageToDate + heightOfDate + paddingFromDateToBottom;
 }
 
+- (void)setHighlighted:(BOOL)highlighted {}
+
 - (void)setRepresentedObject:(id)object {
     _representedObject = object;
     

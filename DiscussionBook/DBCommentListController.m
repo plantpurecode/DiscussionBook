@@ -91,10 +91,6 @@
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
 #pragma mark - Private
 
 - (void)fetchComments {
