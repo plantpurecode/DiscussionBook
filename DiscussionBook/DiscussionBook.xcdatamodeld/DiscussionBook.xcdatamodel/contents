@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1803" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="FBComment" representedClassName="FBComment" parentEntity="FBPost" syncable="YES">
+        <relationship name="thread" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBGroupThread" inverseName="comments" inverseEntity="FBGroupThread" syncable="YES"/>
+    </entity>
     <entity name="FBGroup" representedClassName="FBGroup" parentEntity="FBObject" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FBPost" inverseName="group" inverseEntity="FBPost" syncable="YES"/>
+        <relationship name="threads" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FBGroupThread" inverseName="group" inverseEntity="FBGroupThread" syncable="YES"/>
+    </entity>
+    <entity name="FBGroupThread" representedClassName="FBGroupThread" parentEntity="FBPost" syncable="YES">
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBComment" inverseName="thread" inverseEntity="FBComment" syncable="YES"/>
+        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBGroup" inverseName="threads" inverseEntity="FBGroup" syncable="YES"/>
     </entity>
     <entity name="FBObject" representedClassName="FBObject" syncable="YES">
         <attribute name="identifier" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="FBPost" representedClassName="FBPost" parentEntity="FBObject" syncable="YES">
+    <entity name="FBPost" representedClassName="FBPost" isAbstract="YES" parentEntity="FBObject" syncable="YES">
         <attribute name="createdDate" attributeType="Date" syncable="YES"/>
         <attribute name="message" attributeType="String" syncable="YES"/>
         <relationship name="fromUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" inverseName="posts" inverseEntity="FBUser" syncable="YES"/>
-        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBGroup" inverseName="posts" inverseEntity="FBGroup" syncable="YES"/>
     </entity>
     <entity name="FBUser" representedClassName="FBUser" parentEntity="FBObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPost" inverseName="fromUser" inverseEntity="FBPost" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FBGroup" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="FBObject" positionX="0" positionY="0" width="128" height="60"/>
-        <element name="FBPost" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="FBUser" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="FBGroup" positionX="180" positionY="96" width="128" height="75"/>
+        <element name="FBObject" positionX="0" positionY="-90" width="128" height="60"/>
+        <element name="FBPost" positionX="0" positionY="90" width="128" height="90"/>
+        <element name="FBUser" positionX="-200" positionY="72" width="128" height="75"/>
+        <element name="FBGroupThread" positionX="108" positionY="252" width="128" height="75"/>
+        <element name="FBComment" positionX="-74" positionY="243" width="128" height="60"/>
     </elements>
 </model>

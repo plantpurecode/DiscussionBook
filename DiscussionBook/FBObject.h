@@ -2,7 +2,7 @@
 //  FBObject.h
 //  DiscussionBook
 //
-//  Created by Jacob Relkin on 7/20/12.
+//  Created by Jacob Relkin on 7/21/12.
 //  Copyright (c) 2012 Jacob Relkin. All rights reserved.
 //
 
@@ -13,10 +13,5 @@
 @interface FBObject : NSManagedObject
 
 @property (nonatomic, retain) NSString * identifier;
-
-+ (NSDictionary *)properties;
-+ (NSDictionary *)propertyMapping;
-
-- (id)initWithDictionary:(NSDictionary *)dictionary inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

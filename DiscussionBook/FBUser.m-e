@@ -7,13 +7,12 @@
 //
 
 #import "FBUser.h"
+#import "FBPost.h"
+
 
 @implementation FBUser
 
 @dynamic name;
-
-+ (NSDictionary *)propertyMapping {
-    return @{ @"name" : @"name" };
-}
+@dynamic posts;
 
 @end

@@ -1,12 +1,12 @@
 //
-//  FBObject.m
+//  FBObject+DiscussionBook.m
 //  DiscussionBook
 //
-//  Created by Jacob Relkin on 7/20/12.
+//  Created by Jacob Relkin on 7/21/12.
 //  Copyright (c) 2012 Jacob Relkin. All rights reserved.
 //
 
-#import "FBObject.h"
+#import "FBObject+DiscussionBook.h"
 #import "NSArray+DiscussionBook.h"
 #import <objc/runtime.h>
 
@@ -20,7 +20,7 @@ UIKIT_STATIC_INLINE NSDictionary *DBPropertiesForClass(Class cls) {
     NSMutableDictionary *props = [NSMutableDictionary new];
     for(unsigned i = 0; i < propertyCount; ++i) {
         objc_property_t prop = properties[i];
-
+        
         NSString *name = [[NSString alloc] initWithCString:property_getName(prop) encoding:NSUTF8StringEncoding];
         char *typeStr = property_copyAttributeValue(prop, "T");
         if(typeStr[0] == '@' && strlen(typeStr) > 3) {
@@ -34,7 +34,7 @@ UIKIT_STATIC_INLINE NSDictionary *DBPropertiesForClass(Class cls) {
         free(typeStr);
     }
     free(properties);
-
+    
     return [props copy];
 }
 
@@ -49,12 +49,23 @@ UIKIT_STATIC_INLINE NSDictionary *DBRecursivePropertiesForSubclassesOfClass(Clas
     return [props copy];
 }
 
+static NSDateFormatter *DBDateFormatter() {
+    static NSDateFormatter *formatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+        [formatter setCalendar:[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar]];
+        [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        [formatter setDateFormat:@"y-MM-dd'T'HH:mm:ssZZZ"];
+    });
+    return formatter;
+}
+
 static const char FBObjectClassPropertyMappingKey;
 static const char FBObjectClassPropertiesKey;
 
-@implementation FBObject
-
-@dynamic identifier;
+@implementation FBObject (DiscussionBook)
 
 + (NSDictionary *)properties {
     id properties = objc_getAssociatedObject(self, &FBObjectClassPropertiesKey);
@@ -78,7 +89,7 @@ static const char FBObjectClassPropertiesKey;
             }
             cls = [cls superclass];
         }
-
+        
         mapping = [mergedMapping copy];
         objc_setAssociatedObject(self, &FBObjectClassPropertyMappingKey, mapping, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -87,6 +98,21 @@ static const char FBObjectClassPropertiesKey;
 
 + (NSDictionary *)propertyMapping {
     return @{ @"id" : @"identifier"};
+}
+
++ (id)objectWithDictionary:(NSDictionary *)dictionary inContext:(NSManagedObjectContext *)context {
+    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(self)];
+    [fr setPredicate:[NSPredicate predicateWithFormat:@"identifier = %@", dictionary[@"id"]]];
+    
+    NSError *error = nil;
+    NSArray *results = [context executeFetchRequest:fr error:&error];
+    if ([results count] > 0) {
+        return [results objectAtIndex:0];
+    } else {
+        FBObject *object = [[FBObject alloc] initWithDictionary:dictionary inManagedObjectContext:context];
+        return object;
+    }
+    
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary inManagedObjectContext:(NSManagedObjectContext *)context {
@@ -126,8 +152,9 @@ static const char FBObjectClassPropertiesKey;
         return nil;
     }
     
-    if(propertyType == [NSString class] && objectType == [NSDate class]) {
+    if(propertyType == [NSDate class] && objectType == [NSString class]) {
         //NSDateFormatter
+        mappedObject = [DBDateFormatter() dateFromString:object];
     } else if(propertyType == [NSDate class] && objectType == [NSString class]) {
         //-description
     } else if([propertyType isSubclassOfClass:[FBObject class]]) {

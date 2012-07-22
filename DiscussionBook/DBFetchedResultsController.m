@@ -180,8 +180,8 @@
         [objectsToInsert minusSet:[oldObjects set]];
         
         // maybe move things that are in both sets
-        NSMutableSet *objectsToMove = [NSMutableSet setWithSet:[newObjects set]];
-        [objectsToMove intersectSet:[oldObjects set]];
+        NSMutableSet *objectsToMoveOrReload = [NSMutableSet setWithSet:[newObjects set]];
+        [objectsToMoveOrReload intersectSet:[oldObjects set]];
         
         [[self tableView] beginUpdates];
         
@@ -203,15 +203,21 @@
         [[self tableView] insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:UITableViewRowAnimationAutomatic];
         
         
-        for (id object in objectsToMove) {
+        NSMutableArray *indexPathsToReload = [NSMutableArray array];
+        for (id object in objectsToMoveOrReload) {
             NSInteger oldIndex = [oldObjects indexOfObject:object];
             NSInteger newIndex = [newObjects indexOfObject:object];
             if (oldIndex != newIndex) {
+                // it moved
                 NSIndexPath *oldPath = [NSIndexPath indexPathForRow:oldIndex inSection:0];
                 NSIndexPath *newPath = [NSIndexPath indexPathForRow:newIndex inSection:0];
                 [[self tableView] moveRowAtIndexPath:oldPath toIndexPath:newPath];
+            } else {
+                // it didn't move but *something* updated
+                [indexPathsToReload addObject:[NSIndexPath indexPathForRow:newIndex inSection:0]];
             }
         }
+        [[self tableView] reloadRowsAtIndexPaths:indexPathsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
         
         [[self tableView] endUpdates];
         

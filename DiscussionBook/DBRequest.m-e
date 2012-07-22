@@ -8,7 +8,7 @@
 
 #import "DBRequest.h"
 #import "DBAppDelegate.h"
-#import "FBObject.h"
+#import "FBObject+DiscussionBook.h"
 #import "DBFacebookAuthenticationManager.h"
 
 UIKIT_STATIC_INLINE NSOperationQueue *DBRequestOperationQueue() {
@@ -53,6 +53,7 @@ static NSString * DBRequestMethods[] = {
 - (id)initWithResponseObjectType:(Class)responseObjectType {
     self = [super init];
     if(self) {
+        _responseObjectsKeyPath = @"data";
         _responseObjectType = responseObjectType;
         _state = DBRequestStateReady;
     }
@@ -186,7 +187,9 @@ static NSString * DBRequestMethods[] = {
                                                                                   usingBlock:notificationBlock];
        
        NSError *error = nil;
-       [_context save:&error];
+       if (![_context save:&error]) {
+           NSLog(@"error saving: %@", error);
+       }
                                               
        _state = DBRequestStateFinished;
     }];

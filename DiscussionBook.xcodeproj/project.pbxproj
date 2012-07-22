@@ -8,14 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		522580D715BB2CE60002A7F6 /* NSArray+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 522580D615BB2CE60002A7F6 /* NSArray+DiscussionBook.m */; };
-		522580DD15BB33400002A7F6 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 522580DC15BB33400002A7F6 /* FBUser.m */; };
 		522580E015BB35000002A7F6 /* DBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 522580DF15BB35000002A7F6 /* DBRequest.m */; };
 		5225812315BB568E0002A7F6 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5225811615BB568E0002A7F6 /* FBDialog.bundle */; };
 		5225812415BB568E0002A7F6 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5225811C15BB568E0002A7F6 /* libfacebook_ios_sdk.a */; };
 		5225812715BB61C30002A7F6 /* DBFacebookAuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5225812615BB61C20002A7F6 /* DBFacebookAuthenticationManager.m */; };
-		529F67F815BA691F00DDD81D /* FBObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 529F67F715BA691F00DDD81D /* FBObject.m */; };
-		529F67FB15BA691F00DDD81D /* FBPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 529F67FA15BA691F00DDD81D /* FBPost.m */; };
-		529F67FE15BA691F00DDD81D /* FBGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 529F67FD15BA691F00DDD81D /* FBGroup.m */; };
 		52EB7BE715BA3E6800C7E339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE615BA3E6800C7E339 /* UIKit.framework */; };
 		52EB7BE915BA3E6800C7E339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE815BA3E6800C7E339 /* Foundation.framework */; };
 		52EB7BEB15BA3E6800C7E339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BEA15BA3E6800C7E339 /* CoreGraphics.framework */; };
@@ -34,6 +30,17 @@
 		5526637015BA58B600D822D0 /* DBGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */; };
 		5526637215BA5BD400D822D0 /* DBGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */; };
 		5526639015BB240700D822D0 /* UITableViewCell+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */; };
+		555684B315BB7C6400B53932 /* FBObject+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684B215BB7C6400B53932 /* FBObject+DiscussionBook.m */; };
+		555684B715BB7CD300B53932 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684B615BB7CD300B53932 /* FBUser.m */; };
+		555684BA15BB7CD300B53932 /* FBPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684B915BB7CD300B53932 /* FBPost.m */; };
+		555684BD15BB7CD400B53932 /* FBGroupThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684BC15BB7CD400B53932 /* FBGroupThread.m */; };
+		555684C015BB7CD400B53932 /* FBObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684BF15BB7CD400B53932 /* FBObject.m */; };
+		555684C315BB7CD500B53932 /* FBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684C215BB7CD400B53932 /* FBComment.m */; };
+		555684C615BB7CD500B53932 /* FBGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684C515BB7CD500B53932 /* FBGroup.m */; };
+		555684C915BB7D1C00B53932 /* FBGroup+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684C815BB7D1C00B53932 /* FBGroup+DiscussionBook.m */; };
+		555684CF15BB7DD000B53932 /* FBPost+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684CE15BB7DD000B53932 /* FBPost+DiscussionBook.m */; };
+		555684D215BB7E4100B53932 /* FBUser+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684D115BB7E4100B53932 /* FBUser+DiscussionBook.m */; };
+		555684D515BB7F2600B53932 /* FBGroupThread+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684D415BB7F2600B53932 /* FBGroupThread+DiscussionBook.m */; };
 		55F2F92115BB24DE0032F6E8 /* DBFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +57,6 @@
 /* Begin PBXFileReference section */
 		522580D515BB2CE60002A7F6 /* NSArray+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DiscussionBook.h"; sourceTree = "<group>"; };
 		522580D615BB2CE60002A7F6 /* NSArray+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DiscussionBook.m"; sourceTree = "<group>"; };
-		522580DB15BB33400002A7F6 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBUser.h; path = Models/FBUser.h; sourceTree = "<group>"; };
-		522580DC15BB33400002A7F6 /* FBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBUser.m; path = Models/FBUser.m; sourceTree = "<group>"; };
 		522580DE15BB35000002A7F6 /* DBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRequest.h; sourceTree = "<group>"; };
 		522580DF15BB35000002A7F6 /* DBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRequest.m; sourceTree = "<group>"; };
 		5225811415BB568E0002A7F6 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
@@ -71,12 +76,6 @@
 		5225812215BB568E0002A7F6 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		5225812515BB61C20002A7F6 /* DBFacebookAuthenticationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFacebookAuthenticationManager.h; sourceTree = "<group>"; };
 		5225812615BB61C20002A7F6 /* DBFacebookAuthenticationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFacebookAuthenticationManager.m; sourceTree = "<group>"; };
-		529F67F615BA691F00DDD81D /* FBObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBObject.h; path = Models/FBObject.h; sourceTree = "<group>"; };
-		529F67F715BA691F00DDD81D /* FBObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBObject.m; path = Models/FBObject.m; sourceTree = "<group>"; };
-		529F67F915BA691F00DDD81D /* FBPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBPost.h; path = Models/FBPost.h; sourceTree = "<group>"; };
-		529F67FA15BA691F00DDD81D /* FBPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBPost.m; path = Models/FBPost.m; sourceTree = "<group>"; };
-		529F67FC15BA691F00DDD81D /* FBGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBGroup.h; path = Models/FBGroup.h; sourceTree = "<group>"; };
-		529F67FD15BA691F00DDD81D /* FBGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBGroup.m; path = Models/FBGroup.m; sourceTree = "<group>"; };
 		52EB7BE215BA3E6800C7E339 /* DiscussionBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscussionBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB7BE615BA3E6800C7E339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52EB7BE815BA3E6800C7E339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +101,28 @@
 		5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBGroupTableViewCell.xib; sourceTree = "<group>"; };
 		5526638E15BB240700D822D0 /* UITableViewCell+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+DiscussionBook.h"; sourceTree = "<group>"; };
 		5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+DiscussionBook.m"; sourceTree = "<group>"; };
+		555684B115BB7C6400B53932 /* FBObject+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBObject+DiscussionBook.h"; sourceTree = "<group>"; };
+		555684B215BB7C6400B53932 /* FBObject+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBObject+DiscussionBook.m"; sourceTree = "<group>"; };
+		555684B515BB7CD200B53932 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
+		555684B615BB7CD300B53932 /* FBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUser.m; sourceTree = "<group>"; };
+		555684B815BB7CD300B53932 /* FBPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBPost.h; sourceTree = "<group>"; };
+		555684B915BB7CD300B53932 /* FBPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBPost.m; sourceTree = "<group>"; };
+		555684BB15BB7CD400B53932 /* FBGroupThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGroupThread.h; sourceTree = "<group>"; };
+		555684BC15BB7CD400B53932 /* FBGroupThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGroupThread.m; sourceTree = "<group>"; };
+		555684BE15BB7CD400B53932 /* FBObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBObject.h; sourceTree = "<group>"; };
+		555684BF15BB7CD400B53932 /* FBObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBObject.m; sourceTree = "<group>"; };
+		555684C115BB7CD400B53932 /* FBComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBComment.h; sourceTree = "<group>"; };
+		555684C215BB7CD400B53932 /* FBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBComment.m; sourceTree = "<group>"; };
+		555684C415BB7CD500B53932 /* FBGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBGroup.h; sourceTree = "<group>"; };
+		555684C515BB7CD500B53932 /* FBGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBGroup.m; sourceTree = "<group>"; };
+		555684C715BB7D1C00B53932 /* FBGroup+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBGroup+DiscussionBook.h"; sourceTree = "<group>"; };
+		555684C815BB7D1C00B53932 /* FBGroup+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBGroup+DiscussionBook.m"; sourceTree = "<group>"; };
+		555684CD15BB7DCF00B53932 /* FBPost+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBPost+DiscussionBook.h"; sourceTree = "<group>"; };
+		555684CE15BB7DD000B53932 /* FBPost+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBPost+DiscussionBook.m"; sourceTree = "<group>"; };
+		555684D015BB7E4100B53932 /* FBUser+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBUser+DiscussionBook.h"; sourceTree = "<group>"; };
+		555684D115BB7E4100B53932 /* FBUser+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBUser+DiscussionBook.m"; sourceTree = "<group>"; };
+		555684D315BB7F2600B53932 /* FBGroupThread+DiscussionBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBGroupThread+DiscussionBook.h"; sourceTree = "<group>"; };
+		555684D415BB7F2600B53932 /* FBGroupThread+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBGroupThread+DiscussionBook.m"; sourceTree = "<group>"; };
 		55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFetchedResultsController.h; sourceTree = "<group>"; };
 		55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFetchedResultsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,14 +180,28 @@
 		529F680215BA692700DDD81D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				522580DB15BB33400002A7F6 /* FBUser.h */,
-				522580DC15BB33400002A7F6 /* FBUser.m */,
-				529F67FC15BA691F00DDD81D /* FBGroup.h */,
-				529F67FD15BA691F00DDD81D /* FBGroup.m */,
-				529F67F915BA691F00DDD81D /* FBPost.h */,
-				529F67FA15BA691F00DDD81D /* FBPost.m */,
-				529F67F615BA691F00DDD81D /* FBObject.h */,
-				529F67F715BA691F00DDD81D /* FBObject.m */,
+				555684BE15BB7CD400B53932 /* FBObject.h */,
+				555684BF15BB7CD400B53932 /* FBObject.m */,
+				555684C415BB7CD500B53932 /* FBGroup.h */,
+				555684C515BB7CD500B53932 /* FBGroup.m */,
+				555684C115BB7CD400B53932 /* FBComment.h */,
+				555684C215BB7CD400B53932 /* FBComment.m */,
+				555684BB15BB7CD400B53932 /* FBGroupThread.h */,
+				555684BC15BB7CD400B53932 /* FBGroupThread.m */,
+				555684B815BB7CD300B53932 /* FBPost.h */,
+				555684B915BB7CD300B53932 /* FBPost.m */,
+				555684B515BB7CD200B53932 /* FBUser.h */,
+				555684B615BB7CD300B53932 /* FBUser.m */,
+				555684B115BB7C6400B53932 /* FBObject+DiscussionBook.h */,
+				555684B215BB7C6400B53932 /* FBObject+DiscussionBook.m */,
+				555684C715BB7D1C00B53932 /* FBGroup+DiscussionBook.h */,
+				555684C815BB7D1C00B53932 /* FBGroup+DiscussionBook.m */,
+				555684CD15BB7DCF00B53932 /* FBPost+DiscussionBook.h */,
+				555684CE15BB7DD000B53932 /* FBPost+DiscussionBook.m */,
+				555684D015BB7E4100B53932 /* FBUser+DiscussionBook.h */,
+				555684D115BB7E4100B53932 /* FBUser+DiscussionBook.m */,
+				555684D315BB7F2600B53932 /* FBGroupThread+DiscussionBook.h */,
+				555684D415BB7F2600B53932 /* FBGroupThread+DiscussionBook.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -383,15 +418,22 @@
 				52EB7BFC15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld in Sources */,
 				5526636D15BA589600D822D0 /* DBGroupListController.m in Sources */,
 				5526637015BA58B600D822D0 /* DBGroupTableViewCell.m in Sources */,
-				529F67F815BA691F00DDD81D /* FBObject.m in Sources */,
-				529F67FB15BA691F00DDD81D /* FBPost.m in Sources */,
-				529F67FE15BA691F00DDD81D /* FBGroup.m in Sources */,
 				5526639015BB240700D822D0 /* UITableViewCell+DiscussionBook.m in Sources */,
 				55F2F92115BB24DE0032F6E8 /* DBFetchedResultsController.m in Sources */,
 				522580D715BB2CE60002A7F6 /* NSArray+DiscussionBook.m in Sources */,
-				522580DD15BB33400002A7F6 /* FBUser.m in Sources */,
 				522580E015BB35000002A7F6 /* DBRequest.m in Sources */,
 				5225812715BB61C30002A7F6 /* DBFacebookAuthenticationManager.m in Sources */,
+				555684B315BB7C6400B53932 /* FBObject+DiscussionBook.m in Sources */,
+				555684B715BB7CD300B53932 /* FBUser.m in Sources */,
+				555684BA15BB7CD300B53932 /* FBPost.m in Sources */,
+				555684BD15BB7CD400B53932 /* FBGroupThread.m in Sources */,
+				555684C015BB7CD400B53932 /* FBObject.m in Sources */,
+				555684C315BB7CD500B53932 /* FBComment.m in Sources */,
+				555684C615BB7CD500B53932 /* FBGroup.m in Sources */,
+				555684C915BB7D1C00B53932 /* FBGroup+DiscussionBook.m in Sources */,
+				555684CF15BB7DD000B53932 /* FBPost+DiscussionBook.m in Sources */,
+				555684D215BB7E4100B53932 /* FBUser+DiscussionBook.m in Sources */,
+				555684D515BB7F2600B53932 /* FBGroupThread+DiscussionBook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

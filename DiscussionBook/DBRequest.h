@@ -23,8 +23,8 @@ typedef enum {
 @property (nonatomic, readonly) Class responseObjectType;
 
 @property (nonatomic, copy) NSString *route;
-@property (nonatomic) DBRequestMethod method;
-@property (nonatomic, copy) NSString *responseObjectsKeyPath;
+@property (nonatomic) DBRequestMethod method; // default is "GET"
+@property (nonatomic, copy) NSString *responseObjectsKeyPath; // default is "data"
 @property (nonatomic, copy) NSDictionary *parameters;
 
 @property (nonatomic, copy) void(^failureBlock)(NSError *error);

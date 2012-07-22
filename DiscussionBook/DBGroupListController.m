@@ -9,7 +9,7 @@
 #import "DBGroupListController.h"
 #import "DBGroupTableViewCell.h"
 #import "DBFetchedResultsController.h"
-#import "FBGroup.h"
+#import "FBGroup+DiscussionBook.h"
 #import "DBRequest.h"
 
 @implementation DBGroupListController {
@@ -34,13 +34,6 @@
     // start loading the groups
     DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
     [request setRoute:@"me/groups"];
-    [request setResponseObjectsKeyPath:@"data"];
-    [request setFailureBlock:^(NSError *error) {
-        NSLog(@"failed with error: %@", error);
-    }];
-    [request setCompletionBlock:^{
-        NSLog(@"completed!");
-    }];
     [request execute];
 }
 
@@ -58,7 +51,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"tapped: %@", indexPath);
+    FBGroup *group = [resultsController objectAtIndexPath:indexPath];
+    [group requestThreads:^(NSArray *threads){
+        NSLog(@"threads: %@", threads);
+    }];
 }
 
 @end
