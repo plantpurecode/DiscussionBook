@@ -19,7 +19,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell = [tableView dequeueReusableCellWithIdentifier:[self cellReuseIdentifier] forIndexPath:indexPath];
+    id cell = [tableView dequeueReusableCellWithIdentifier:[self cellReuseIdentifier]];
     
     NSManagedObject *object = [_currentObjects objectAtIndex:[indexPath row]];
     if ([cell respondsToSelector:@selector(setRepresentedObject:)]) {
