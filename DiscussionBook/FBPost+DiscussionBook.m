@@ -16,9 +16,7 @@
     return @{
         @"created_time" : @"creationDate",
         @"updated_time" : @"updatedDate",
-        @"message" : @"message",
-        @"likes" : @"likes",
-        @"likes.count" : @"likes",
+        @"message" : @"message"
     };
 }
 
@@ -30,6 +28,19 @@
         [self setValue:user forKey:@"fromUser"];
     }
     return self;
+}
+
+- (void)mergeDataFromDictionary:(NSDictionary *)dictionary {
+    [super mergeDataFromDictionary:dictionary];
+    id likesInfo = [dictionary objectForKey:@"likes"];
+    if ([likesInfo isKindOfClass:[NSNumber class]]) {
+        [self setLikes:likesInfo];
+    } else if ([likesInfo isKindOfClass:[NSDictionary class]]) {
+        NSNumber *likes = [likesInfo objectForKey:@"count"];
+        if (likes) {
+            [self setLikes:likes];
+        }
+    }
 }
 
 - (NSManagedObject *)renderingForWidth:(CGFloat)width {

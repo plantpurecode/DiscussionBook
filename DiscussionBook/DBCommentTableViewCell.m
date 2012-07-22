@@ -42,9 +42,13 @@ static NSDateFormatter *CommentTimeFormatter() {
     [_userName setText:[user name]];
     
     NSNumber *likes = [_representedObject likes];
-    NSString *localizedLikes = [NSNumberFormatter localizedStringFromNumber:likes numberStyle:NSNumberFormatterDecimalStyle];
-    NSString *likesString = [NSString stringWithFormat:@"%@👍", localizedLikes];
-    [_likesLabel setText:likesString];
+    if ([likes integerValue] > 0) {
+        NSString *localizedLikes = [NSNumberFormatter localizedStringFromNumber:likes numberStyle:NSNumberFormatterDecimalStyle];
+        NSString *likesString = [NSString stringWithFormat:@"👍 %@", localizedLikes];
+        [_likesLabel setText:likesString];
+    } else {
+        [_likesLabel setText:@""];
+    }
     
     NSDate *postedDate = [_representedObject creationDate];
     NSString *postedDay = [CommentDateFormatter() stringFromDate:postedDate];
