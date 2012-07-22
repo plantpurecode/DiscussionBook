@@ -14,6 +14,8 @@
 
 @implementation DBGroupListController {
     DBFetchedResultsController *resultsController;
+    DBRequest *_groupsRequest;
+    DBRequest *_threadsRequest;
 }
 
 - (id)init {
@@ -32,9 +34,11 @@
 
 - (void)requestUserGroups {
     // start loading the groups
-    DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
-    [request setRoute:@"me/groups"];
-    [request execute];
+    [_groupsRequest cancel]; //Cancel if already started.
+
+    _groupsRequest = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
+    [_groupsRequest setRoute:@"me/groups"];
+    [_groupsRequest execute];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
@@ -51,8 +55,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [_threadsRequest cancel];
+    
     FBGroup *group = [resultsController objectAtIndexPath:indexPath];
-    [group requestThreads:^(NSArray *threads){
+    _threadsRequest = [group requestThreads:^(NSArray *threads) {
         NSLog(@"threads: %@", threads);
     }];
 }

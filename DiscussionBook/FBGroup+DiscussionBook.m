@@ -17,7 +17,7 @@
     return @{ @"name" : @"name" };
 }
 
-- (void)requestThreads:(void(^)(NSArray *threads))handler {
+- (DBRequest *)requestThreads:(void(^)(NSArray *threads))handler {
     NSString *route = [NSString stringWithFormat:@"%@/feed", [self identifier]];
     
     DBRequest *request = [[DBRequest alloc] initWithResponseObjectType:[FBGroupThread class]];
@@ -36,6 +36,7 @@
         }];
     }
     [request execute];
+    return request;
 }
 
 @end

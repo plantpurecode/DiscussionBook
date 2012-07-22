@@ -8,8 +8,9 @@
 
 #import "FBGroup.h"
 
+@class DBRequest;
 @interface FBGroup (DiscussionBook)
 
-- (void)requestThreads:(void(^)(NSArray *threads))handler;
+- (DBRequest *)requestThreads:(void(^)(NSArray *threads))handler;
 
 @end
