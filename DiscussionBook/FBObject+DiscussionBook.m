@@ -38,17 +38,6 @@ UIKIT_STATIC_INLINE NSDictionary *DBPropertiesForClass(Class cls) {
     return [props copy];
 }
 
-UIKIT_STATIC_INLINE NSDictionary *DBRecursivePropertiesForSubclassesOfClass(Class cls) {
-    NSMutableDictionary *props = [NSMutableDictionary new];
-    while ([cls isKindOfClass:[FBObject class]]) {
-        [props addEntriesFromDictionary:DBPropertiesForClass(cls)];
-        
-        cls = [cls superclass];
-    }
-    
-    return [props copy];
-}
-
 static NSDateFormatter *DBDateFormatter() {
     static NSDateFormatter *formatter = nil;
     static dispatch_once_t onceToken;
@@ -68,9 +57,15 @@ static const char FBObjectClassPropertiesKey;
 @implementation FBObject (DiscussionBook)
 
 + (NSDictionary *)properties {
-    id properties = objc_getAssociatedObject(self, &FBObjectClassPropertiesKey);
+    NSMutableDictionary *properties = objc_getAssociatedObject(self, &FBObjectClassPropertiesKey);
     if(!properties) {
-        properties = DBRecursivePropertiesForSubclassesOfClass([self class]);
+        properties = [NSMutableDictionary dictionary];
+        Class cls = [self class];
+        while (cls != [FBObject superclass]) {
+            NSDictionary *p = DBPropertiesForClass(cls);
+            [properties addEntriesFromDictionary:p];
+            cls = [cls superclass];
+        }
         objc_setAssociatedObject(self, &FBObjectClassPropertiesKey, properties, OBJC_ASSOCIATION_RETAIN);
     }
     
@@ -84,12 +79,9 @@ static const char FBObjectClassPropertiesKey;
         NSMutableDictionary *mergedMapping = [NSMutableDictionary new];
         while(cls != [FBObject superclass]) {
             NSDictionary *propMapping = [cls propertyMapping];
-            if([propMapping count]) {
-                [mergedMapping addEntriesFromDictionary:propMapping];
-            }
+            [mergedMapping addEntriesFromDictionary:propMapping];
             cls = [cls superclass];
         }
-        
         mapping = [mergedMapping copy];
         objc_setAssociatedObject(self, &FBObjectClassPropertyMappingKey, mapping, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -109,7 +101,7 @@ static const char FBObjectClassPropertiesKey;
     if ([results count] > 0) {
         return [results objectAtIndex:0];
     } else {
-        FBObject *object = [[FBObject alloc] initWithDictionary:dictionary inManagedObjectContext:context];
+        FBObject *object = [[self alloc] initWithDictionary:dictionary inManagedObjectContext:context];
         return object;
     }
     
@@ -135,7 +127,7 @@ static const char FBObjectClassPropertiesKey;
     for(id key in mapping) {
         id value = [dict objectForKey:key];
         id propertyName = [mapping objectForKey:key];
-        id mappedObject = [self mappedObject:value toType:[self class] forPropertyName:propertyName];
+        id mappedObject = [self mappedObject:value forPropertyName:propertyName];
         
         if(mappedObject) {
             [self setValue:mappedObject forKey:propertyName];
@@ -143,25 +135,25 @@ static const char FBObjectClassPropertiesKey;
     }
 }
 
-- (id)mappedObject:(id)object toType:(Class)cls forPropertyName:(id)key {
+- (id)mappedObject:(id)object forPropertyName:(id)key {
     id mappedObject    = object;
-    Class objectType   = [object class];
-    Class propertyType = [[cls properties] objectForKey:key];
+    Class propertyType = [[[self class] properties] objectForKey:key];
     
-    if(objectType == [NSNull class]) {
+    if(object == [NSNull null]) {
         return nil;
     }
     
-    if(propertyType == [NSDate class] && objectType == [NSString class]) {
+    if(propertyType == [NSDate class] && [object isKindOfClass:[NSString class]]) {
         //NSDateFormatter
         mappedObject = [DBDateFormatter() dateFromString:object];
-    } else if(propertyType == [NSDate class] && objectType == [NSString class]) {
+    } else if(propertyType == [NSString class] && [object isKindOfClass:[NSDate class]]) {
         //-description
+        mappedObject = [object description];
     } else if([propertyType isSubclassOfClass:[FBObject class]]) {
         //To-one relationship
         mappedObject = [[propertyType alloc] initWithDictionary:object
                                          inManagedObjectContext:[self managedObjectContext]];
-    } else if([propertyType isSubclassOfClass:[NSSet class]] && objectType == [NSArray class]) {
+    } else if([propertyType isSubclassOfClass:[NSSet class]] && [object isKindOfClass:[NSArray class]]) {
         //To-many relationship
         NSRelationshipDescription *relationshipDescription = [[[self entity] relationshipsByName] objectForKey:key];
         Class entity = NSClassFromString([[relationshipDescription destinationEntity] name]);
