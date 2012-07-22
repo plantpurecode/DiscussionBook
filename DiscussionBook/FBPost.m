@@ -12,6 +12,7 @@
 
 @implementation FBPost
 
+@dynamic likes;
 @dynamic creationDate;
 @dynamic updatedDate;
 @dynamic message;

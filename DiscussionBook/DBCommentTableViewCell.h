@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define COMMENT_EMPTY_HEIGHT 86.0
+#define COMMENT_EMPTY_HEIGHT 71.0
+#define COMMENT_FONT [UIFont systemFontOfSize:15.0]
 
 @interface DBCommentTableViewCell : UITableViewCell
 

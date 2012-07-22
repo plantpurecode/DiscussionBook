@@ -36,9 +36,15 @@ static NSDateFormatter *CommentTimeFormatter() {
 
 - (void)setRepresentedObject:(id)object {
     _representedObject = object;
+    [_userImageActivityIndicator setHidden:YES];
     
     FBUser *user = [_representedObject fromUser];
     [_userName setText:[user name]];
+    
+    NSNumber *likes = [_representedObject likes];
+    NSString *localizedLikes = [NSNumberFormatter localizedStringFromNumber:likes numberStyle:NSNumberFormatterDecimalStyle];
+    NSString *likesString = [NSString stringWithFormat:@"%@👍", localizedLikes];
+    [_likesLabel setText:likesString];
     
     NSDate *postedDate = [_representedObject creationDate];
     NSString *postedDay = [CommentDateFormatter() stringFromDate:postedDate];
@@ -46,7 +52,12 @@ static NSDateFormatter *CommentTimeFormatter() {
     NSString *posted = [NSString stringWithFormat:@"%@ at %@", postedDay, postedTime];
     [_dateLabel setText:posted];
     
-    
+    [_messageLabel setFont:COMMENT_FONT];
+    if (NO/*[_representedObject hasComputedHeightForWidth:<#(CGFloat)#>]*/) {
+        
+    } else {
+        [_messageLabel setText:@"Loading..."];
+    }
 }
 
 @end

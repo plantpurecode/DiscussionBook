@@ -16,7 +16,9 @@
     return @{
         @"created_time" : @"creationDate",
         @"updated_time" : @"updatedDate",
-        @"message" : @"message"
+        @"message" : @"message",
+        @"likes" : @"likes",
+        @"likes.count" : @"likes",
     };
 }
 

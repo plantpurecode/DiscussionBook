@@ -132,12 +132,17 @@ static const char FBObjectClassPropertiesKey;
     if(![mapping count]) return;
     
     for(id key in mapping) {
-        id value = [dict objectForKey:key];
-        id propertyName = [mapping objectForKey:key];
-        id mappedObject = [self mappedObject:value forPropertyName:propertyName];
-        
-        if(mappedObject) {
-            [self setValue:mappedObject forKey:propertyName];
+        @try {
+            id value = [dict valueForKeyPath:key];
+            id propertyName = [mapping objectForKey:key];
+            id mappedObject = [self mappedObject:value forPropertyName:propertyName];
+            
+            if(mappedObject && [mappedObject isKindOfClass:[NSDictionary class]] == NO) {
+                [self setValue:mappedObject forKey:propertyName];
+            }
+        }
+        @catch (NSException *e) {
+            // consume
         }
     }
 }

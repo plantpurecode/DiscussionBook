@@ -199,6 +199,7 @@
 		529F680215BA692700DDD81D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
 				555684BE15BB7CD400B53932 /* FBObject.h */,
 				555684BF15BB7CD400B53932 /* FBObject.m */,
 				555684C415BB7CD500B53932 /* FBGroup.h */,
@@ -267,7 +268,6 @@
 				555684F315BC667D00B53932 /* Comment List */,
 				55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */,
 				55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */,
-				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
 				529F680215BA692700DDD81D /* Models */,
 				5526638E15BB240700D822D0 /* UITableViewCell+DiscussionBook.h */,
 				5526638F15BB240700D822D0 /* UITableViewCell+DiscussionBook.m */,

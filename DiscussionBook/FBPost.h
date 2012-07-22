@@ -14,6 +14,7 @@
 
 @interface FBPost : FBObject
 
+@property (nonatomic, retain) NSNumber *likes;
 @property (nonatomic, retain) NSDate * creationDate;
 @property (nonatomic, retain) NSDate * updatedDate;
 @property (nonatomic, retain) NSString * message;
