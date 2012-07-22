@@ -193,9 +193,8 @@ static NSString * DBRequestMethods[] = {
 
 - (void)_createModelObjectWithDictionary:(NSDictionary *)dictionary {
     Class cls = [self responseObjectType];
-    if(![cls isSubclassOfClass:[NSManagedObject class]]) {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"Response object type must be a NSManagedObject"];
+    if(!cls) {
+        return;
     }
     
     FBObject *object = [cls objectWithDictionary:dictionary inContext:_context];

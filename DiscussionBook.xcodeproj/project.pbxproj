@@ -16,6 +16,8 @@
 		52B7B53A15BB947100F8A550 /* DBThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B7B53915BB947100F8A550 /* DBThreadTableViewCell.xib */; };
 		52B7B53D15BB99B600F8A550 /* DBThreadListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7B53C15BB99B600F8A550 /* DBThreadListController.m */; };
 		52B7B55A15BC8D0F00F8A550 /* silhouette.gif in Resources */ = {isa = PBXBuildFile; fileRef = 52B7B55915BC8D0F00F8A550 /* silhouette.gif */; };
+		52B7B55E15BC91AF00F8A550 /* DBCreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7B55C15BC91AF00F8A550 /* DBCreatePostViewController.m */; };
+		52B7B55F15BC91AF00F8A550 /* DBCreatePostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B7B55D15BC91AF00F8A550 /* DBCreatePostViewController.xib */; };
 		52EB7BE715BA3E6800C7E339 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE615BA3E6800C7E339 /* UIKit.framework */; };
 		52EB7BE915BA3E6800C7E339 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BE815BA3E6800C7E339 /* Foundation.framework */; };
 		52EB7BEB15BA3E6800C7E339 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EB7BEA15BA3E6800C7E339 /* CoreGraphics.framework */; };
@@ -90,6 +92,9 @@
 		52B7B53B15BB99B600F8A550 /* DBThreadListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBThreadListController.h; sourceTree = "<group>"; };
 		52B7B53C15BB99B600F8A550 /* DBThreadListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBThreadListController.m; sourceTree = "<group>"; };
 		52B7B55915BC8D0F00F8A550 /* silhouette.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = silhouette.gif; sourceTree = "<group>"; };
+		52B7B55B15BC91AF00F8A550 /* DBCreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreatePostViewController.h; sourceTree = "<group>"; };
+		52B7B55C15BC91AF00F8A550 /* DBCreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreatePostViewController.m; sourceTree = "<group>"; };
+		52B7B55D15BC91AF00F8A550 /* DBCreatePostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBCreatePostViewController.xib; sourceTree = "<group>"; };
 		52EB7BE215BA3E6800C7E339 /* DiscussionBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscussionBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EB7BE615BA3E6800C7E339 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		52EB7BE815BA3E6800C7E339 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -276,6 +281,9 @@
 				555684E015BBA5E400B53932 /* Group List */,
 				555684DF15BBA5DC00B53932 /* Thread List */,
 				555684F315BC667D00B53932 /* Comment List */,
+				52B7B55B15BC91AF00F8A550 /* DBCreatePostViewController.h */,
+				52B7B55C15BC91AF00F8A550 /* DBCreatePostViewController.m */,
+				52B7B55D15BC91AF00F8A550 /* DBCreatePostViewController.xib */,
 				55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */,
 				55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */,
 				529F680215BA692700DDD81D /* Models */,
@@ -448,6 +456,7 @@
 				52B7B53A15BB947100F8A550 /* DBThreadTableViewCell.xib in Resources */,
 				555684F515BC66A500B53932 /* DBCommentTableViewCell.xib in Resources */,
 				52B7B55A15BC8D0F00F8A550 /* silhouette.gif in Resources */,
+				52B7B55F15BC91AF00F8A550 /* DBCreatePostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +517,7 @@
 				555684E315BBA6AE00B53932 /* DBPaddedLabel.m in Sources */,
 				555684EE15BC665900B53932 /* DBCommentListController.m in Sources */,
 				555684F215BC667900B53932 /* DBCommentTableViewCell.m in Sources */,
+				52B7B55E15BC91AF00F8A550 /* DBCreatePostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

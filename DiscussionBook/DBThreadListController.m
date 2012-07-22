@@ -13,6 +13,7 @@
 #import "FBGroup+DiscussionBook.h"
 #import "DBRequest.h"
 #import "DBCommentListController.h"
+#import "DBCreatePostViewController.h"
 
 @interface DBThreadListController ()
 
@@ -73,7 +74,21 @@
     UINib *nib = [UINib nibWithNibName:@"DBThreadTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:[DBThreadTableViewCell reuseIdentifier]];
     
+    UIBarButtonItem *createBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                     target:self
+                                                                                     action:@selector(composePost)];
+    self.navigationItem.rightBarButtonItem = createBarButton;
+    
     [_resultsController setTableView:[self tableView]];
+}
+
+- (void)composePost {
+    NSString *route = [NSString stringWithFormat:@"%@/feed", _group.identifier];
+    DBCreatePostViewController *cpvc = [[DBCreatePostViewController alloc] initWithPostType:DBPostTypePost
+                                                                             andStreamRoute:route];
+    
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:cpvc];
+    [self presentModalViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
