@@ -85,6 +85,12 @@ static NSString *FBNSUserDefaultsExpirationDateKey = @"FBNSUserDefaultsExpiratio
     }
 }
 
+- (void)deauthenticate {
+    [NSUserDefaults resetStandardUserDefaults];
+    [_facebookObject setAccessToken:nil];
+    [_facebookObject setExpirationDate:nil];
+}
+
 #pragma mark - FBSessionDelegate
 
 - (void)fbDidLogin {
@@ -93,6 +99,8 @@ static NSString *FBNSUserDefaultsExpirationDateKey = @"FBNSUserDefaultsExpiratio
     
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:FBNSUserDefaultsAccessTokenKey];
     [[NSUserDefaults standardUserDefaults] setObject:expiration  forKey:FBNSUserDefaultsExpirationDateKey];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     if(_queuedSuccessBlock)
         _queuedSuccessBlock(YES);

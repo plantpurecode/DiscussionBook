@@ -10,7 +10,7 @@
 #import "DBGroupListController.h"
 #import "DBFacebookAuthenticationManager.h"
 
-@interface DBAppDelegate ()
+@interface DBAppDelegate () <UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) UIViewController *rootViewController;
 
@@ -106,6 +106,7 @@
 - (UIViewController *)rootViewController {
     if(!_rootViewController) {
         UINavigationController *navigationController = [[UINavigationController alloc] initWithNavigationBarClass:[UINavigationBar class] toolbarClass:[UIToolbar class]];
+        navigationController.delegate = self;
         
         NSManagedObjectContext *context = [self managedObjectContext];
         _groupListController = [[DBGroupListController alloc] init];
@@ -118,6 +119,39 @@
     return _rootViewController;
 }
 
+#pragma mark - UINavigationControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if(viewController == navigationController.topViewController) {
+        if(viewController.navigationItem.leftBarButtonItem) return;
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                                                              target:self
+                                                                              action:@selector(showOptionsActionSheet)];
+        viewController.navigationItem.leftBarButtonItem = item;
+    }
+}
+
+
+#pragma mark - Actions
+
+- (void)showOptionsActionSheet {
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure that you want to logout?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                         destructiveButtonTitle:@"Logout"
+                                              otherButtonTitles:nil];
+    [sheet showInView:self.rootViewController.view];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == [actionSheet destructiveButtonIndex]) {
+        [[DBFacebookAuthenticationManager sharedManager] deauthenticate];
+        //Present modal here...
+    }
+}
 
 #pragma mark - Core Data stack
 

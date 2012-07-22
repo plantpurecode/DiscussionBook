@@ -17,7 +17,8 @@
 + (id)sharedManager;
 
 - (void)authenticateWithBlock:(void(^)(BOOL success))block;
-
+- (void)deauthenticate;
 - (BOOL)handleOpenURL:(NSURL *)url;
+
 
 @end
