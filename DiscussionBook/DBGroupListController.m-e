@@ -24,21 +24,25 @@
         [self setTitle:@"DiscussionBook"];
         resultsController = [[DBFetchedResultsController alloc] init];
         [resultsController setCellReuseIdentifier:[DBGroupTableViewCell reuseIdentifier]];
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
-        [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
-        [resultsController setFetchRequest:fetchRequest];
     }
     return self;
 }
 
 - (void)requestUserGroups {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBGroup"];
+    [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+    [resultsController setFetchRequest:fetchRequest];
+    
     // start loading the groups
     [_groupsRequest cancel]; //Cancel if already started.
 
     _groupsRequest = [[DBRequest alloc] initWithResponseObjectType:[FBGroup class]];
     [_groupsRequest setRoute:@"me/groups"];
     [_groupsRequest execute];
+}
+
+- (void)removeUserGroups {
+    [resultsController setFetchRequest:nil];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
