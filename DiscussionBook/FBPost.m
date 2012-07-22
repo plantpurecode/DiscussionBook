@@ -16,5 +16,6 @@
 @dynamic updatedDate;
 @dynamic message;
 @dynamic fromUser;
+@dynamic renderings;
 
 @end

@@ -27,8 +27,6 @@
     DBFetchedResultsController *_resultsController;
 }
 
-@synthesize indicatorView;
-
 - (id)initWithGroup:(FBGroup *)group {
     self = [super initWithStyle:UITableViewStylePlain];
     if(self) {
@@ -62,7 +60,7 @@
     
     [self.view addSubview:indicator];
     [indicator startAnimating];
-    indicatorView = indicator;
+    _indicatorView = indicator;
     
     [self fetchThreads];
 }
@@ -101,8 +99,8 @@
     [_threadsRequest cancel];
     
     _threadsRequest = [_group requestThreads:^(NSArray *threads) {
-        [indicatorView stopAnimating];
-        [indicatorView removeFromSuperview];
+        [_indicatorView stopAnimating];
+        [_indicatorView removeFromSuperview];
     }];
 }
 

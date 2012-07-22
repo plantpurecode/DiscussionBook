@@ -10,4 +10,6 @@
 
 @interface DBCommentTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) id representedObject;
+
 @end

@@ -11,6 +11,6 @@
 @class DBRequest;
 @interface FBGroupThread (DiscussionBook)
 
-- (DBRequest *)requestThreads:(void(^)(NSArray *threads))handler;
+- (DBRequest *)requestComments:(void(^)(NSArray *comments))handler;
 
 @end

@@ -7,23 +7,13 @@
 //
 
 #import "DBCommentTableViewCell.h"
+#import "FBComment.h"
+#import "FBPost+DiscussionBook.h"
 
 @implementation DBCommentTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setRepresentedObject:(id)object {
+    _representedObject = object;
 }
 
 @end

@@ -8,11 +8,15 @@
 
 #import "DBCommentListController.h"
 #import "FBGroupThread+DiscussionBook.h"
+#import "FBPost+DiscussionBook.h"
 #import "DBFetchedResultsController.h"
 #import "DBCommentTableViewCell.h"
 #import "UITableViewCell+DiscussionBook.h"
+#import "DBRequest.h"
 
 @interface DBCommentListController ()
+
+@property (weak) UIActivityIndicatorView *indicatorView;
 
 @end
 
@@ -51,9 +55,46 @@
     [_resultsController setTableView:[self tableView]];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.center = self.view.center;
+    [self.view addSubview:indicator];
+    [indicator startAnimating];
+    _indicatorView = indicator;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     FBPost *post = [_resultsController objectAtIndexPath:indexPath];
-    return 44;
+    
+#warning WHAT GOES HERE?
+    __block CGFloat h = 44;
+    if ([post hasComputedHeightForWidth:42]) {
+        h = [post computedHeightForWidth:42];
+    }
+    return h;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(DBCommentTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    FBPost *object = [_resultsController objectAtIndexPath:indexPath];
+    CGFloat width = 0;
+    if ([object hasComputedHeightForWidth:width] == NO) {
+        [object requestComputedHeightForWidth:width inFont:nil handler:^(CGFloat height) {
+            NSIndexPath *path = [_resultsController indexPathForObject:object];
+            [tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }];
+    }
+}
+
+#pragma mark - Private
+
+- (void)fetchComments {
+    [_commentsRequest cancel];
+    
+    _commentsRequest = [_thread requestComments:^(NSArray *comments) {
+        [_indicatorView stopAnimating];
+        [_indicatorView removeFromSuperview];
+    }];
 }
 
 @end

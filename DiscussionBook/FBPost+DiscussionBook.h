@@ -10,4 +10,8 @@
 
 @interface FBPost (DiscussionBook)
 
+- (BOOL)hasComputedHeightForWidth:(CGFloat)width;
+- (CGFloat)computedHeightForWidth:(CGFloat)width;
+- (void)requestComputedHeightForWidth:(CGFloat)width inFont:(UIFont *)font handler:(void(^)(CGFloat height))handler;
+
 @end
