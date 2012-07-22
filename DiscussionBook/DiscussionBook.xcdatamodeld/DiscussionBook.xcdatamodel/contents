@@ -20,17 +20,24 @@
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="fromUser" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" inverseName="posts" inverseEntity="FBUser" syncable="YES"/>
+        <relationship name="renderings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPostRendering" inverseName="post" inverseEntity="FBPostRendering" syncable="YES"/>
+    </entity>
+    <entity name="FBPostRendering" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="width" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="post" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FBPost" inverseName="renderings" inverseEntity="FBPost" syncable="YES"/>
     </entity>
     <entity name="FBUser" representedClassName="FBUser" parentEntity="FBObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBPost" inverseName="fromUser" inverseEntity="FBPost" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FBComment" positionX="-74" positionY="243" width="128" height="60"/>
+        <element name="FBComment" positionX="-81" positionY="318" width="128" height="60"/>
         <element name="FBGroup" positionX="180" positionY="96" width="128" height="75"/>
         <element name="FBGroupThread" positionX="108" positionY="252" width="128" height="75"/>
         <element name="FBObject" positionX="0" positionY="-90" width="128" height="60"/>
-        <element name="FBPost" positionX="0" positionY="90" width="128" height="105"/>
+        <element name="FBPost" positionX="0" positionY="90" width="128" height="120"/>
         <element name="FBUser" positionX="-200" positionY="72" width="128" height="75"/>
+        <element name="FBPostRendering" positionX="-252" positionY="207" width="128" height="90"/>
     </elements>
 </model>

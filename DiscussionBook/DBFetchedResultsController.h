@@ -16,5 +16,6 @@
 @property (nonatomic, copy) NSString *cellReuseIdentifier;
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForObject:(id)object;
 
 @end

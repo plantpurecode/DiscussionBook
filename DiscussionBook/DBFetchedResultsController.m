@@ -14,6 +14,12 @@
     NSOrderedSet *_currentObjects;
 }
 
+- (void)dealloc {
+    [self setFetchContext:nil];
+    [self setFetchRequest:nil];
+    [self setTableView:nil];
+}
+
 - (NSUInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_currentObjects count];
 }
@@ -73,6 +79,12 @@
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath {
     return [_currentObjects objectAtIndex:[indexPath row]];
+}
+
+- (NSIndexPath *)indexPathForObject:(id)object {
+    NSInteger index = [_currentObjects indexOfObject:object];
+    if (index == NSNotFound) { return nil; }
+    return [NSIndexPath indexPathForRow:index inSection:0];
 }
 
 #pragma mark - Watching for Changes

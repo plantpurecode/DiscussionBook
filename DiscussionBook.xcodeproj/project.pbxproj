@@ -45,6 +45,9 @@
 		555684D215BB7E4100B53932 /* FBUser+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684D115BB7E4100B53932 /* FBUser+DiscussionBook.m */; };
 		555684D515BB7F2600B53932 /* FBGroupThread+DiscussionBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684D415BB7F2600B53932 /* FBGroupThread+DiscussionBook.m */; };
 		555684E315BBA6AE00B53932 /* DBPaddedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684E215BBA6AE00B53932 /* DBPaddedLabel.m */; };
+		555684EE15BC665900B53932 /* DBCommentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684ED15BC665900B53932 /* DBCommentListController.m */; };
+		555684F215BC667900B53932 /* DBCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 555684F115BC667900B53932 /* DBCommentTableViewCell.m */; };
+		555684F515BC66A500B53932 /* DBCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 555684F415BC66A500B53932 /* DBCommentTableViewCell.xib */; };
 		55F2F92115BB24DE0032F6E8 /* DBFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +137,11 @@
 		555684D415BB7F2600B53932 /* FBGroupThread+DiscussionBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBGroupThread+DiscussionBook.m"; sourceTree = "<group>"; };
 		555684E115BBA6AE00B53932 /* DBPaddedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPaddedLabel.h; sourceTree = "<group>"; };
 		555684E215BBA6AE00B53932 /* DBPaddedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPaddedLabel.m; sourceTree = "<group>"; };
+		555684EC15BC665900B53932 /* DBCommentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCommentListController.h; sourceTree = "<group>"; };
+		555684ED15BC665900B53932 /* DBCommentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCommentListController.m; sourceTree = "<group>"; };
+		555684F015BC667900B53932 /* DBCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCommentTableViewCell.h; sourceTree = "<group>"; };
+		555684F115BC667900B53932 /* DBCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCommentTableViewCell.m; sourceTree = "<group>"; };
+		555684F415BC66A500B53932 /* DBCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DBCommentTableViewCell.xib; sourceTree = "<group>"; };
 		55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFetchedResultsController.h; sourceTree = "<group>"; };
 		55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFetchedResultsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,8 +262,9 @@
 			children = (
 				52EB7BF715BA3E6800C7E339 /* DBAppDelegate.h */,
 				52EB7BF815BA3E6800C7E339 /* DBAppDelegate.m */,
-				555684E015BBA5E400B53932 /* Group View */,
-				555684DF15BBA5DC00B53932 /* Thread View */,
+				555684E015BBA5E400B53932 /* Group List */,
+				555684DF15BBA5DC00B53932 /* Thread List */,
+				555684F315BC667D00B53932 /* Comment List */,
 				55F2F91F15BB24DE0032F6E8 /* DBFetchedResultsController.h */,
 				55F2F92015BB24DE0032F6E8 /* DBFetchedResultsController.m */,
 				52EB7BFA15BA3E6800C7E339 /* DiscussionBook.xcdatamodeld */,
@@ -312,7 +321,7 @@
 			path = Vendor;
 			sourceTree = SOURCE_ROOT;
 		};
-		555684DF15BBA5DC00B53932 /* Thread View */ = {
+		555684DF15BBA5DC00B53932 /* Thread List */ = {
 			isa = PBXGroup;
 			children = (
 				52B7B53B15BB99B600F8A550 /* DBThreadListController.h */,
@@ -323,10 +332,10 @@
 				555684E115BBA6AE00B53932 /* DBPaddedLabel.h */,
 				555684E215BBA6AE00B53932 /* DBPaddedLabel.m */,
 			);
-			name = "Thread View";
+			name = "Thread List";
 			sourceTree = "<group>";
 		};
-		555684E015BBA5E400B53932 /* Group View */ = {
+		555684E015BBA5E400B53932 /* Group List */ = {
 			isa = PBXGroup;
 			children = (
 				5526636B15BA589600D822D0 /* DBGroupListController.h */,
@@ -335,7 +344,19 @@
 				5526636F15BA58B600D822D0 /* DBGroupTableViewCell.m */,
 				5526637115BA5BD400D822D0 /* DBGroupTableViewCell.xib */,
 			);
-			name = "Group View";
+			name = "Group List";
+			sourceTree = "<group>";
+		};
+		555684F315BC667D00B53932 /* Comment List */ = {
+			isa = PBXGroup;
+			children = (
+				555684EC15BC665900B53932 /* DBCommentListController.h */,
+				555684ED15BC665900B53932 /* DBCommentListController.m */,
+				555684F015BC667900B53932 /* DBCommentTableViewCell.h */,
+				555684F115BC667900B53932 /* DBCommentTableViewCell.m */,
+				555684F415BC66A500B53932 /* DBCommentTableViewCell.xib */,
+			);
+			name = "Comment List";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +435,7 @@
 				5526637215BA5BD400D822D0 /* DBGroupTableViewCell.xib in Resources */,
 				5225812315BB568E0002A7F6 /* FBDialog.bundle in Resources */,
 				52B7B53A15BB947100F8A550 /* DBThreadTableViewCell.xib in Resources */,
+				555684F515BC66A500B53932 /* DBCommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +494,8 @@
 				52B7B53715BB93E800F8A550 /* DBThreadTableViewCell.m in Sources */,
 				52B7B53D15BB99B600F8A550 /* DBThreadListController.m in Sources */,
 				555684E315BBA6AE00B53932 /* DBPaddedLabel.m in Sources */,
+				555684EE15BC665900B53932 /* DBCommentListController.m in Sources */,
+				555684F215BC667900B53932 /* DBCommentTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

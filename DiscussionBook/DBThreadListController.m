@@ -12,6 +12,7 @@
 #import "DBThreadTableViewCell.h"
 #import "FBGroup+DiscussionBook.h"
 #import "DBRequest.h"
+#import "DBCommentListController.h"
 
 @interface DBThreadListController ()
 
@@ -23,7 +24,7 @@
     DBRequest *_threadsRequest;
     FBGroup   *_group;
     
-    DBFetchedResultsController *resultsController;
+    DBFetchedResultsController *_resultsController;
 }
 
 @synthesize indicatorView;
@@ -35,16 +36,20 @@
         
         [self setTitle:group.name];
         
-        resultsController = [[DBFetchedResultsController alloc] init];
-        [resultsController setCellReuseIdentifier:[DBThreadTableViewCell reuseIdentifier]];
+        _resultsController = [[DBFetchedResultsController alloc] init];
+        [_resultsController setCellReuseIdentifier:[DBThreadTableViewCell reuseIdentifier]];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"FBGroupThread"];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"group = %@", group];
         [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"updatedDate" ascending:YES]]];
-        [resultsController setFetchRequest:fetchRequest];
-        [resultsController setFetchContext:[group managedObjectContext]];
+        [_resultsController setFetchRequest:fetchRequest];
+        [_resultsController setFetchContext:[group managedObjectContext]];
 
     }
     return self;
+}
+
+- (void)dealloc {
+    NSLog(@"WHY AM I DESTRUCTING??");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -70,7 +75,7 @@
     UINib *nib = [UINib nibWithNibName:@"DBThreadTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:[DBThreadTableViewCell reuseIdentifier]];
     
-    [resultsController setTableView:[self tableView]];
+    [_resultsController setTableView:[self tableView]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,6 +87,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    FBGroupThread *thread = [_resultsController objectAtIndexPath:indexPath];
+    DBCommentListController *commentsController = [[DBCommentListController alloc] initWithThread:thread];
+    [[self navigationController] pushViewController:commentsController animated:YES];
 }
 
 #pragma mark - Private
